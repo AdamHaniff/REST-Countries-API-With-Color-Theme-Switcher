@@ -40,3 +40,191 @@ html,
 body {
   height: 100%;
 }
+
+// ******** MOBILE LAYOUTS ********
+
+// ********* 375px LAYOUT *********
+
+// ************ HEADER ************
+.header {
+  background: $color-white;
+  box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.06);
+  padding: 3rem 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    color: $color-cinder;
+    font-size: 1.4rem;
+    font-weight: $fw-extra-bold;
+    line-height: 2rem;
+  }
+}
+
+// ******** THEME-SWITCHER ********
+.theme-switcher {
+  &__button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  &__icon {
+    display: block;
+  }
+
+  &__label {
+    color: $color-cinder;
+    font-size: 1.2rem;
+    font-weight: $fw-semi-bold;
+  }
+}
+
+// ********* SEARCH-FILTER *********
+.search-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 100%;
+
+  &-countries {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.2rem;
+    padding: 2.4rem 1.6rem 6.5rem;
+  }
+}
+
+// ************ SEARCH ************
+.search {
+  border-radius: 0.5rem;
+  background: $color-white;
+  box-shadow: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+  padding: 1.6rem 3.2rem;
+
+  &__icon {
+    display: block;
+  }
+
+  &__input {
+    border: none;
+    width: 100%;
+
+    &::placeholder {
+      color: $color-cloud;
+      font-family: $font-nunito-sans;
+      font-size: 1.2rem;
+      line-height: 2rem;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// ************ FILTER ************
+.filter {
+  width: 20rem;
+  position: relative;
+
+  &__header {
+    border-radius: 0.5rem;
+    background: $color-white;
+    box-shadow: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 1.9rem 1.4rem 2.4rem;
+  }
+
+  &__label {
+    color: $color-cinder;
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+
+  &__arrow-icon {
+    display: block;
+  }
+
+  &__options {
+    border-radius: 0.5rem;
+    background: $color-white;
+    box-shadow: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+    list-style: none;
+    padding: 1.6rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    position: absolute;
+    top: 5.2rem;
+  }
+
+  &__option {
+    color: $color-cinder;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+}
+
+// *********** COUNTRIES ***********
+.countries {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+// ************ COUNTRY ************
+.country {
+  max-width: 26.4rem;
+  border-radius: 0.5rem;
+  background: $color-white;
+  box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+
+  &__flag {
+    width: 100%;
+    height: 16rem;
+    display: block;
+  }
+
+  &__description {
+    padding: 2.4rem 2.6rem 4.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__name {
+    color: $color-cinder;
+    font-size: 1.8rem;
+    font-weight: $fw-extra-bold;
+    line-height: 2.6rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__info {
+    color: $color-cinder;
+    font-size: 1.4rem;
+    font-weight: $fw-light;
+    line-height: 1.6rem;
+
+    & .bold {
+      font-weight: $fw-semi-bold;
+    }
+  }
+}

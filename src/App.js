@@ -62,8 +62,10 @@ export default function App() {
   return (
     <div className="app">
       <Header />
-      <SearchFilter />
-      <Countries />
+      <div className="search-filter-countries">
+        <SearchFilter />
+        <Countries />
+      </div>
     </div>
   );
 }
