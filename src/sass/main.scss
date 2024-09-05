@@ -1,10 +1,21 @@
 // ********* DESIGN SYSTEM *********
 
 // ************ COLORS ************
+$color-white: #fff;
+$color-alabaster: #fafafa;
+$color-cinder: #111517;
+$color-cloud: #c4c4c4;
+$color-dark-slate-grey: #2b3844;
+$color-ebony-clay: #202c36;
+$color-mountain-mist: #979797;
 
 // ********** FONT-FAMILY **********
+$font-nunito-sans: "Nunito Sans", sans-serif;
 
 // ********* FONT-WEIGHTS *********
+$fw-light: 300;
+$fw-semi-bold: 600;
+$fw-extra-bold: 800;
 
 // ************* BASE *************
 *,
@@ -21,8 +32,8 @@ html {
 }
 
 body {
-  // background:
-  // font-family:
+  background: $color-alabaster;
+  font-family: $font-nunito-sans;
 }
 
 html,

@@ -11,6 +11,11 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background: #fafafa;
+  font-family: "Nunito Sans", sans-serif;
+}
+
 html,
 body {
   height: 100%;

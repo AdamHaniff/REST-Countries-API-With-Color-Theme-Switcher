@@ -63,6 +63,7 @@ export default function App() {
     <div className="app">
       <Header />
       <SearchFilter />
+      <Countries />
     </div>
   );
 }
@@ -181,5 +182,30 @@ function Country({ countryObj }) {
   // VARIABLES
   const { countryFlag, country, population, region, capital } = countryObj;
 
-  return <div className="country"></div>;
+  return (
+    <div className="country">
+      <img
+        className="country__flag"
+        src={countryFlag}
+        alt={`${country} flag`}
+      />
+      <div className="country__description">
+        <span className="country__name">{country}</span>
+        <div className="country__details">
+          <span className="country__info">
+            <span className="bold">Population: </span>
+            {population}
+          </span>
+          <span className="country__info">
+            <span className="bold">Region: </span>
+            {region}
+          </span>
+          <span className="country__info">
+            <span className="bold">Capital: </span>
+            {capital}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 }
