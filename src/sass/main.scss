@@ -53,12 +53,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background 0.3s;
+
+  &--dark {
+    background: $color-dark-slate-grey;
+  }
 
   &__title {
     color: $color-cinder;
     font-size: 1.4rem;
     font-weight: $fw-extra-bold;
     line-height: 2rem;
+    transition: color 0.3s;
+
+    &--dark {
+      color: $color-white;
+    }
   }
 }
 
@@ -198,7 +208,7 @@ body {
   }
 
   &__description {
-    padding: 2.4rem 2.6rem 4.6rem;
+    padding: 2.4rem 2.4rem 4.6rem;
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
