@@ -9,6 +9,9 @@ $color-dark-slate-grey: #2b3844;
 $color-ebony-clay: #202c36;
 $color-mountain-mist: #979797;
 
+// ********** BOX-SHADOWS **********
+$box-shadow-5-percent: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+
 // ********** FONT-FAMILY **********
 $font-nunito-sans: "Nunito Sans", sans-serif;
 
@@ -32,7 +35,6 @@ html {
 }
 
 body {
-  background: $color-alabaster;
   font-family: $font-nunito-sans;
 }
 
@@ -45,6 +47,12 @@ body {
 
 // ********* 375px LAYOUT *********
 
+// ************** APP **************
+.app {
+  background: $color-alabaster;
+  transition: background 0.3s;
+}
+
 // ************ HEADER ************
 .header {
   background: $color-white;
@@ -55,20 +63,12 @@ body {
   align-items: center;
   transition: background 0.3s;
 
-  &--dark {
-    background: $color-dark-slate-grey;
-  }
-
   &__title {
     color: $color-cinder;
     font-size: 1.4rem;
     font-weight: $fw-extra-bold;
     line-height: 2rem;
     transition: color 0.3s;
-
-    &--dark {
-      color: $color-white;
-    }
   }
 }
 
@@ -90,6 +90,7 @@ body {
     color: $color-cinder;
     font-size: 1.2rem;
     font-weight: $fw-semi-bold;
+    transition: color 0.3s;
   }
 }
 
@@ -113,11 +114,12 @@ body {
 .search {
   border-radius: 0.5rem;
   background: $color-white;
-  box-shadow: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+  box-shadow: $box-shadow-5-percent;
   display: flex;
   align-items: center;
   gap: 2.6rem;
   padding: 1.6rem 3.2rem;
+  transition: background 0.3s;
 
   &__icon {
     display: block;
@@ -126,6 +128,8 @@ body {
   &__input {
     border: none;
     width: 100%;
+    background: $color-white;
+    transition: background 0.3s;
 
     &::placeholder {
       color: $color-cloud;
@@ -148,7 +152,7 @@ body {
   &__header {
     border-radius: 0.5rem;
     background: $color-white;
-    box-shadow: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+    box-shadow: $box-shadow-5-percent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -168,7 +172,7 @@ body {
   &__options {
     border-radius: 0.5rem;
     background: $color-white;
-    box-shadow: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+    box-shadow: $box-shadow-5-percent;
     list-style: none;
     padding: 1.6rem 2.4rem;
     display: flex;
@@ -237,4 +241,17 @@ body {
       font-weight: $fw-semi-bold;
     }
   }
+}
+
+// ******** DYNAMIC STYLES ********
+.dark-slate-grey-bg {
+  background: $color-dark-slate-grey;
+}
+
+.white-color {
+  color: $color-white;
+}
+
+.ebony-clay-bg {
+  background: $color-ebony-clay;
 }

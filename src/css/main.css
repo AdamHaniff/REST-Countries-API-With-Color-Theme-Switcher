@@ -12,13 +12,17 @@ html {
 }
 
 body {
-  background: #fafafa;
   font-family: "Nunito Sans", sans-serif;
 }
 
 html,
 body {
   height: 100%;
+}
+
+.app {
+  background: #fafafa;
+  transition: background 0.3s;
 }
 
 .header {
@@ -30,18 +34,12 @@ body {
   align-items: center;
   transition: background 0.3s;
 }
-.header--dark {
-  background: #2b3844;
-}
 .header__title {
   color: #111517;
   font-size: 1.4rem;
   font-weight: 800;
   line-height: 2rem;
   transition: color 0.3s;
-}
-.header__title--dark {
-  color: #fff;
 }
 
 .theme-switcher__button {
@@ -58,6 +56,7 @@ body {
   color: #111517;
   font-size: 1.2rem;
   font-weight: 600;
+  transition: color 0.3s;
 }
 
 .search-filter {
@@ -82,6 +81,7 @@ body {
   align-items: center;
   gap: 2.6rem;
   padding: 1.6rem 3.2rem;
+  transition: background 0.3s;
 }
 .search__icon {
   display: block;
@@ -89,6 +89,8 @@ body {
 .search__input {
   border: none;
   width: 100%;
+  background: #fff;
+  transition: background 0.3s;
 }
 .search__input::-moz-placeholder {
   color: #c4c4c4;
@@ -189,4 +191,16 @@ body {
 }
 .country__info .bold {
   font-weight: 600;
+}
+
+.dark-slate-grey-bg {
+  background: #2b3844;
+}
+
+.white-color {
+  color: #fff;
+}
+
+.ebony-clay-bg {
+  background: #202c36;
 }/*# sourceMappingURL=main.css.map */
