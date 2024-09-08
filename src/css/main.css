@@ -86,6 +86,10 @@ body {
 .search__icon {
   display: block;
 }
+.search__icon-path {
+  fill: #b2b2b2;
+  transition: fill 0.3s;
+}
 .search__input {
   border: none;
   width: 100%;
@@ -104,6 +108,12 @@ body {
   font-size: 1.2rem;
   line-height: 2rem;
 }
+.search__input.dark-slate-grey-bg::-moz-placeholder {
+  color: #fff;
+}
+.search__input.dark-slate-grey-bg::placeholder {
+  color: #fff;
+}
 .search__input:focus {
   outline: none;
 }
@@ -120,14 +130,20 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.4rem 1.9rem 1.4rem 2.4rem;
+  transition: background 0.3s;
 }
 .filter__label {
   color: #111517;
   font-size: 1.2rem;
   line-height: 2rem;
+  transition: color 0.3s;
 }
 .filter__arrow-icon {
   display: block;
+}
+.filter__arrow-icon-path {
+  fill: #000;
+  transition: fill 0.3s;
 }
 .filter__options {
   border-radius: 0.5rem;
@@ -141,11 +157,13 @@ body {
   width: 100%;
   position: absolute;
   top: 5.2rem;
+  transition: background 0.3s;
 }
 .filter__option {
   color: #111517;
   font-size: 1.2rem;
   line-height: 1.6rem;
+  transition: color 0.3s;
 }
 
 .countries {
@@ -157,7 +175,6 @@ body {
 .country {
   max-width: 26.4rem;
   border-radius: 0.5rem;
-  background: #fff;
   box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
   overflow: hidden;
 }
@@ -167,13 +184,15 @@ body {
   display: block;
 }
 .country__description {
+  background: #fff;
+  color: #111517;
   padding: 2.4rem 2.4rem 4.6rem;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  transition: background 0.3s, color 0.3s;
 }
 .country__name {
-  color: #111517;
   font-size: 1.8rem;
   font-weight: 800;
   line-height: 2.6rem;
@@ -184,7 +203,6 @@ body {
   gap: 0.8rem;
 }
 .country__info {
-  color: #111517;
   font-size: 1.4rem;
   font-weight: 300;
   line-height: 1.6rem;
@@ -203,4 +221,8 @@ body {
 
 .ebony-clay-bg {
   background: #202c36;
+}
+
+.white-fill {
+  fill: #fff;
 }/*# sourceMappingURL=main.css.map */

@@ -74,7 +74,7 @@ export default function App() {
       <Header isLightTheme={isLightTheme} onThemeChange={handleThemeChange} />
       <div className="search-filter-countries">
         <SearchFilter isLightTheme={isLightTheme} />
-        <Countries />
+        <Countries isLightTheme={isLightTheme} />
       </div>
     </div>
   );
@@ -145,7 +145,7 @@ function SearchFilter({ isLightTheme }) {
   return (
     <div className="search-filter">
       <Search isLightTheme={isLightTheme} />
-      <Filter />
+      <Filter isLightTheme={isLightTheme} />
     </div>
   );
 }
@@ -162,10 +162,10 @@ function Search({ isLightTheme }) {
         fill="none"
       >
         <path
+          className={`search__icon-path ${!isLightTheme ? "white-fill" : ""}`}
           fillRule="evenodd"
           clipRule="evenodd"
           d="M11.1111 9.77778H10.4L10.1333 9.51111C11.0222 8.53333 11.5556 7.2 11.5556 5.77778C11.5556 2.57778 8.97778 0 5.77778 0C2.57778 0 0 2.57778 0 5.77778C0 8.97778 2.57778 11.5556 5.77778 11.5556C7.2 11.5556 8.53333 11.0222 9.51111 10.1333L9.77778 10.4V11.1111L14.2222 15.5556L15.5556 14.2222L11.1111 9.77778ZM5.77778 9.77778C3.55556 9.77778 1.77778 8 1.77778 5.77778C1.77778 3.55556 3.55556 1.77778 5.77778 1.77778C8 1.77778 9.77778 3.55556 9.77778 5.77778C9.77778 8 8 9.77778 5.77778 9.77778Z"
-          fill="#B2B2B2"
         />
       </svg>
       <input
@@ -177,11 +177,17 @@ function Search({ isLightTheme }) {
   );
 }
 
-function Filter() {
+function Filter({ isLightTheme }) {
   return (
     <div className="filter">
-      <div className="filter__header">
-        <span className="filter__label">Filter by Region</span>
+      <div
+        className={`filter__header ${
+          !isLightTheme ? "dark-slate-grey-bg" : ""
+        }`}
+      >
+        <span className={`filter__label ${!isLightTheme ? "white-color" : ""}`}>
+          Filter by Region
+        </span>
         <svg
           className="filter__arrow-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -191,16 +197,25 @@ function Filter() {
           fill="none"
         >
           <path
+            className={`filter__arrow-icon-path ${
+              !isLightTheme ? "white-fill" : ""
+            }`}
             fillRule="evenodd"
             clipRule="evenodd"
             d="M7.875 2.875L5 5.75L2.125 2.875L1.25 3.75L5 7.5L8.75 3.75L7.875 2.875Z"
-            fill="black"
           />
         </svg>
       </div>
-      <ul className="filter__options">
+      <ul
+        className={`filter__options ${
+          !isLightTheme ? "dark-slate-grey-bg" : ""
+        }`}
+      >
         {filteredRegions.map((region) => (
-          <li className="filter__option" key={region}>
+          <li
+            className={`filter__option ${!isLightTheme ? "white-color" : ""}`}
+            key={region}
+          >
             {region}
           </li>
         ))}
@@ -209,17 +224,21 @@ function Filter() {
   );
 }
 
-function Countries() {
+function Countries({ isLightTheme }) {
   return (
     <div className="countries">
       {countries.map((country) => (
-        <Country key={country.country} countryObj={country} />
+        <Country
+          isLightTheme={isLightTheme}
+          key={country.country}
+          countryObj={country}
+        />
       ))}
     </div>
   );
 }
 
-function Country({ countryObj }) {
+function Country({ isLightTheme, countryObj }) {
   // VARIABLES
   const { countryFlag, country, population, region, capital } = countryObj;
 
@@ -230,7 +249,11 @@ function Country({ countryObj }) {
         src={countryFlag}
         alt={`${country} flag`}
       />
-      <div className="country__description">
+      <div
+        className={`country__description ${
+          !isLightTheme ? "dark-slate-grey-bg white-color" : ""
+        }`}
+      >
         <span className="country__name">{country}</span>
         <div className="country__details">
           <span className="country__info">
