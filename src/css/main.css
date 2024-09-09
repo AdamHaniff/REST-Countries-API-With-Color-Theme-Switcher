@@ -95,16 +95,23 @@ body {
   width: 100%;
   background: #fff;
   transition: background 0.3s;
+  color: #111517;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  caret-color: #111517;
+}
+.search__input.dark-slate-grey-bg {
+  color: #fff;
+  caret-color: #fff;
 }
 .search__input::-moz-placeholder {
   color: #c4c4c4;
-  font-family: "Nunito Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 2rem;
 }
 .search__input::placeholder {
   color: #c4c4c4;
-  font-family: "Nunito Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 2rem;
 }
@@ -140,6 +147,7 @@ body {
 }
 .filter__arrow-icon {
   display: block;
+  transition: transform 0.3s;
 }
 .filter__arrow-icon-path {
   fill: #000;
@@ -153,6 +161,7 @@ body {
   padding: 1.6rem 2.4rem;
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 0.8rem;
   width: 100%;
   position: absolute;
@@ -225,4 +234,8 @@ body {
 
 .white-fill {
   fill: #fff;
+}
+
+.rotate {
+  transform: rotate(-180deg);
 }/*# sourceMappingURL=main.css.map */

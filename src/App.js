@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const filteredRegions = ["Africa", "America", "Asia", "Europe", "Oceania"];
-const countries = [
+const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+const data = [
   {
     countryFlag: "images/germany-flag.png",
     country: "Germany",
@@ -63,18 +63,29 @@ const countries = [
 export default function App() {
   // STATE
   const [isLightTheme, setIsLightTheme] = useState(true);
+  const [countries, setCountries] = useState(data);
+  const [filteredRegion, setFilteredRegion] = useState(null);
 
   // HANDLER FUNCTIONS
   function handleThemeChange() {
     setIsLightTheme((colorTheme) => !colorTheme);
   }
 
+  function handleRegionClick(region) {
+    setFilteredRegion(region);
+    setCountries(data.filter((country) => country.region === region));
+  }
+
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
       <Header isLightTheme={isLightTheme} onThemeChange={handleThemeChange} />
       <div className="search-filter-countries">
-        <SearchFilter isLightTheme={isLightTheme} />
-        <Countries isLightTheme={isLightTheme} />
+        <SearchFilter
+          isLightTheme={isLightTheme}
+          filteredRegion={filteredRegion}
+          onRegionClick={handleRegionClick}
+        />
+        <Countries isLightTheme={isLightTheme} countries={countries} />
       </div>
     </div>
   );
@@ -141,11 +152,15 @@ function Header({ isLightTheme, onThemeChange }) {
   );
 }
 
-function SearchFilter({ isLightTheme }) {
+function SearchFilter({ isLightTheme, filteredRegion, onRegionClick }) {
   return (
     <div className="search-filter">
       <Search isLightTheme={isLightTheme} />
-      <Filter isLightTheme={isLightTheme} />
+      <Filter
+        isLightTheme={isLightTheme}
+        filteredRegion={filteredRegion}
+        onRegionClick={onRegionClick}
+      />
     </div>
   );
 }
@@ -177,19 +192,33 @@ function Search({ isLightTheme }) {
   );
 }
 
-function Filter({ isLightTheme }) {
+function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
+  // STATE
+  const [isDisplayed, setIsDisplayed] = useState(false);
+
+  // HANDLER FUNCTIONS
+  function handleFilterHeaderClick() {
+    setIsDisplayed((isDisplayed) => !isDisplayed);
+  }
+
+  function handleRegionClick(region) {
+    onRegionClick(region);
+    setIsDisplayed(false);
+  }
+
   return (
     <div className="filter">
       <div
         className={`filter__header ${
           !isLightTheme ? "dark-slate-grey-bg" : ""
         }`}
+        onClick={handleFilterHeaderClick}
       >
         <span className={`filter__label ${!isLightTheme ? "white-color" : ""}`}>
-          Filter by Region
+          {filteredRegion ? filteredRegion : "Filter by Region"}
         </span>
         <svg
-          className="filter__arrow-icon"
+          className={`filter__arrow-icon ${isDisplayed ? "rotate" : ""}`}
           xmlns="http://www.w3.org/2000/svg"
           width="10"
           height="10"
@@ -206,25 +235,28 @@ function Filter({ isLightTheme }) {
           />
         </svg>
       </div>
-      <ul
-        className={`filter__options ${
-          !isLightTheme ? "dark-slate-grey-bg" : ""
-        }`}
-      >
-        {filteredRegions.map((region) => (
-          <li
-            className={`filter__option ${!isLightTheme ? "white-color" : ""}`}
-            key={region}
-          >
-            {region}
-          </li>
-        ))}
-      </ul>
+      {isDisplayed && (
+        <ul
+          className={`filter__options ${
+            !isLightTheme ? "dark-slate-grey-bg" : ""
+          }`}
+        >
+          {filteredRegions.map((region) => (
+            <li
+              className={`filter__option ${!isLightTheme ? "white-color" : ""}`}
+              key={region}
+              onClick={() => handleRegionClick(region)}
+            >
+              {region}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
 
-function Countries({ isLightTheme }) {
+function Countries({ isLightTheme, countries }) {
   return (
     <div className="countries">
       {countries.map((country) => (

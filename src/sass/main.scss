@@ -137,10 +137,19 @@ body {
     width: 100%;
     background: $color-white;
     transition: background 0.3s;
+    color: $color-cinder;
+    font-family: $font-nunito-sans;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    caret-color: $color-cinder;
+
+    &.dark-slate-grey-bg {
+      color: $color-white;
+      caret-color: $color-white;
+    }
 
     &::placeholder {
       color: $color-cloud;
-      font-family: $font-nunito-sans;
       font-size: 1.2rem;
       line-height: 2rem;
     }
@@ -180,6 +189,7 @@ body {
 
   &__arrow-icon {
     display: block;
+    transition: transform 0.3s;
 
     &-path {
       fill: $color-black;
@@ -195,6 +205,7 @@ body {
     padding: 1.6rem 2.4rem;
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: 0.8rem;
     width: 100%;
     position: absolute;
@@ -278,4 +289,8 @@ body {
 
 .white-fill {
   fill: $color-white;
+}
+
+.rotate {
+  transform: rotate(-180deg);
 }
