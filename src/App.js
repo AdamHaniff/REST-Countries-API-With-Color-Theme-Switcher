@@ -1,70 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+// VARIABLES
 const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
-const data = [
-  {
-    countryFlag: "images/germany-flag.png",
-    country: "Germany",
-    population: "81,770,900",
-    region: "Europe",
-    capital: "Berlin",
-  },
-  {
-    countryFlag: "images/usa-flag.png",
-    country: "United States of America",
-    population: "323,947,000",
-    region: "Americas",
-    capital: "Washington, D.C.",
-  },
-  {
-    countryFlag: "images/brazil-flag.png",
-    country: "Brazil",
-    population: "206,135,893",
-    region: "Americas",
-    capital: "Brasília",
-  },
-  {
-    countryFlag: "images/iceland-flag.png",
-    country: "Iceland",
-    population: "334,300",
-    region: "Europe",
-    capital: "Reykjavík",
-  },
-  {
-    countryFlag: "images/afghanistan-flag.png",
-    country: "Afghanistan",
-    population: "27,657,145",
-    region: "Asia",
-    capital: "Kabul",
-  },
-  {
-    countryFlag: "images/aland-islands-flag.png",
-    country: "Åland Islands",
-    population: "28,875",
-    region: "Europe",
-    capital: "Mariehamn",
-  },
-  {
-    countryFlag: "images/albania-flag.png",
-    country: "Albania",
-    population: "2,886,026",
-    region: "Europe",
-    capital: "Tirana",
-  },
-  {
-    countryFlag: "images/algeria-flag.png",
-    country: "Algeria",
-    population: "40,400,000",
-    region: "Africa",
-    capital: "Algiers",
-  },
-];
 
 export default function App() {
   // STATE
   const [isLightTheme, setIsLightTheme] = useState(true);
-  const [countries, setCountries] = useState(data);
+  const [countries, setCountries] = useState([]);
   const [filteredRegion, setFilteredRegion] = useState(null);
+  const [countryName, setCountryName] = useState("");
 
   // HANDLER FUNCTIONS
   function handleThemeChange() {
@@ -73,8 +17,24 @@ export default function App() {
 
   function handleRegionClick(region) {
     setFilteredRegion(region);
-    setCountries(data.filter((country) => country.region === region));
+    setCountries(countries.filter((country) => country.region === region));
   }
+
+  // EFFECTS
+  useEffect(function () {
+    async function fetchAllCountries() {
+      try {
+        const res = await fetch(`https://restcountries.com/v3.1/all`);
+        const data = await res.json();
+        console.log(data);
+        setCountries(data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+
+    fetchAllCountries();
+  }, []);
 
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
@@ -84,6 +44,8 @@ export default function App() {
           isLightTheme={isLightTheme}
           filteredRegion={filteredRegion}
           onRegionClick={handleRegionClick}
+          countryName={countryName}
+          setCountryName={setCountryName}
         />
         <Countries isLightTheme={isLightTheme} countries={countries} />
       </div>
@@ -152,10 +114,20 @@ function Header({ isLightTheme, onThemeChange }) {
   );
 }
 
-function SearchFilter({ isLightTheme, filteredRegion, onRegionClick }) {
+function SearchFilter({
+  isLightTheme,
+  filteredRegion,
+  onRegionClick,
+  countryName,
+  setCountryName,
+}) {
   return (
     <div className="search-filter">
-      <Search isLightTheme={isLightTheme} />
+      <Search
+        isLightTheme={isLightTheme}
+        countryName={countryName}
+        setCountryName={setCountryName}
+      />
       <Filter
         isLightTheme={isLightTheme}
         filteredRegion={filteredRegion}
@@ -165,7 +137,7 @@ function SearchFilter({ isLightTheme, filteredRegion, onRegionClick }) {
   );
 }
 
-function Search({ isLightTheme }) {
+function Search({ isLightTheme, countryName, setCountryName }) {
   return (
     <div className={`search ${!isLightTheme ? "dark-slate-grey-bg" : ""}`}>
       <svg
@@ -187,6 +159,8 @@ function Search({ isLightTheme }) {
         className={`search__input ${!isLightTheme ? "dark-slate-grey-bg" : ""}`}
         type="text"
         placeholder="Search for a country..."
+        value={countryName}
+        onChange={(e) => setCountryName(e.target.value)}
       />
     </div>
   );
@@ -262,7 +236,7 @@ function Countries({ isLightTheme, countries }) {
       {countries.map((country) => (
         <Country
           isLightTheme={isLightTheme}
-          key={country.country}
+          key={country.name.common}
           countryObj={country}
         />
       ))}
@@ -272,7 +246,16 @@ function Countries({ isLightTheme, countries }) {
 
 function Country({ isLightTheme, countryObj }) {
   // VARIABLES
-  const { countryFlag, country, population, region, capital } = countryObj;
+  const {
+    flags: { png: countryFlag } = {},
+    name: { common: country } = {},
+    population = "Unknown population",
+    region = "Unknown region",
+    capital: [capital] = ["Unknown capital"],
+  } = countryObj;
+
+  // Format the population with commas
+  const formattedPopulation = population.toLocaleString();
 
   return (
     <div className="country">
@@ -290,7 +273,7 @@ function Country({ isLightTheme, countryObj }) {
         <div className="country__details">
           <span className="country__info">
             <span className="bold">Population: </span>
-            {population}
+            {formattedPopulation}
           </span>
           <span className="country__info">
             <span className="bold">Region: </span>

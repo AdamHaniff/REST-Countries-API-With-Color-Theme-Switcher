@@ -41,8 +41,10 @@ body {
 }
 
 html,
-body {
-  height: 100%;
+body,
+#root,
+.app {
+  min-height: 100vh;
 }
 
 // ******** MOBILE LAYOUTS ********
