@@ -297,6 +297,13 @@ body,
   animation: spin 1s linear infinite;
 }
 
+// ********* ERROR-MESSAGE *********
+.error-message {
+  font-size: 1.4rem;
+  color: $color-cinder;
+  font-weight: $fw-extra-bold;
+}
+
 // ******** DYNAMIC STYLES ********
 .dark-slate-grey-bg {
   background: $color-dark-slate-grey;

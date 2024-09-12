@@ -18,35 +18,41 @@ export default function App() {
   }
 
   function handleRegionClick(region) {
+    if (region === filteredRegion) return;
     setFilteredRegion(region);
-    setCountries(countries.filter((country) => country.region === region));
   }
 
   // EFFECTS
-  useEffect(function () {
-    async function fetchAllCountries() {
-      try {
-        setIsLoading(true);
+  useEffect(
+    function () {
+      async function fetchCountries(url) {
+        try {
+          setIsLoading(true);
 
-        const res = await fetch(`https://restcountries.com/v3.1/all`);
+          const res = await fetch(url);
 
-        // res.ok = false;
+          if (!res.ok) {
+            throw new Error("🚨 Something went wrong fetching countries 🚨");
+          }
 
-        if (!res.ok) {
-          throw new Error("⚠ Something went wrong fetching all countries ⚠");
+          const data = await res.json();
+          setCountries(data);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
         }
-
-        const data = await res.json();
-        setCountries(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
       }
-    }
 
-    fetchAllCountries();
-  }, []);
+      // Fetch all countries if no region is selected, otherwise fetch countries by region
+      const url = filteredRegion
+        ? `https://restcountries.com/v3.1/region/${filteredRegion}`
+        : `https://restcountries.com/v3.1/all`;
+
+      fetchCountries(url);
+    },
+    [filteredRegion]
+  );
 
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
@@ -59,9 +65,11 @@ export default function App() {
           countryName={countryName}
           setCountryName={setCountryName}
         />
-        {isLoading ? (
-          <Spinner isLightTheme={isLightTheme} />
-        ) : (
+        {isLoading && <Spinner isLightTheme={isLightTheme} />}
+        {!isLoading && error && (
+          <ErrorMessage message={error} isLightTheme={isLightTheme} />
+        )}
+        {!isLoading && !error && (
           <Countries isLightTheme={isLightTheme} countries={countries} />
         )}
       </div>
@@ -133,6 +141,14 @@ function Header({ isLightTheme, onThemeChange }) {
 function Spinner({ isLightTheme }) {
   return (
     <div className={`spinner ${!isLightTheme ? "border-dark" : ""}`}></div>
+  );
+}
+
+function ErrorMessage({ message, isLightTheme }) {
+  return (
+    <span className={`error-message ${!isLightTheme ? "white-color" : ""}`}>
+      {message}
+    </span>
   );
 }
 
