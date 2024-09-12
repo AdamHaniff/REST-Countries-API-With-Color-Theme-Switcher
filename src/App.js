@@ -9,6 +9,8 @@ export default function App() {
   const [countries, setCountries] = useState([]);
   const [filteredRegion, setFilteredRegion] = useState(null);
   const [countryName, setCountryName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // HANDLER FUNCTIONS
   function handleThemeChange() {
@@ -24,12 +26,22 @@ export default function App() {
   useEffect(function () {
     async function fetchAllCountries() {
       try {
+        setIsLoading(true);
+
         const res = await fetch(`https://restcountries.com/v3.1/all`);
+
+        // res.ok = false;
+
+        if (!res.ok) {
+          throw new Error("⚠ Something went wrong fetching all countries ⚠");
+        }
+
         const data = await res.json();
-        console.log(data);
         setCountries(data);
       } catch (err) {
-        console.log(err.message);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -47,7 +59,11 @@ export default function App() {
           countryName={countryName}
           setCountryName={setCountryName}
         />
-        <Countries isLightTheme={isLightTheme} countries={countries} />
+        {isLoading ? (
+          <Spinner isLightTheme={isLightTheme} />
+        ) : (
+          <Countries isLightTheme={isLightTheme} countries={countries} />
+        )}
       </div>
     </div>
   );
@@ -111,6 +127,12 @@ function Header({ isLightTheme, onThemeChange }) {
         </button>
       </div>
     </header>
+  );
+}
+
+function Spinner({ isLightTheme }) {
+  return (
+    <div className={`spinner ${!isLightTheme ? "border-dark" : ""}`}></div>
   );
 }
 
@@ -272,15 +294,15 @@ function Country({ isLightTheme, countryObj }) {
         <span className="country__name">{country}</span>
         <div className="country__details">
           <span className="country__info">
-            <span className="bold">Population: </span>
+            <span className="bold">Population:&nbsp;</span>
             {formattedPopulation}
           </span>
           <span className="country__info">
-            <span className="bold">Region: </span>
+            <span className="bold">Region:&nbsp;</span>
             {region}
           </span>
           <span className="country__info">
-            <span className="bold">Capital: </span>
+            <span className="bold">Capital:&nbsp;</span>
             {capital}
           </span>
         </div>

@@ -22,6 +22,14 @@ body,
   min-height: 100vh;
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .app {
   background: #fafafa;
   transition: background 0.3s;
@@ -217,9 +225,19 @@ body,
   font-size: 1.4rem;
   font-weight: 300;
   line-height: 1.6rem;
+  display: flex;
 }
 .country__info .bold {
   font-weight: 600;
+}
+
+.spinner {
+  width: 4rem;
+  height: 4rem;
+  border: 0.5rem solid #111517;
+  border-top: 0.5rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 .dark-slate-grey-bg {
@@ -240,4 +258,9 @@ body,
 
 .rotate {
   transform: rotate(-180deg);
+}
+
+.border-dark {
+  border: 0.5rem solid #fff;
+  border-top: 0.5rem solid #2b3844;
 }/*# sourceMappingURL=main.css.map */
