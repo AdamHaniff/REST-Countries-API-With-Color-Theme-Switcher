@@ -22,17 +22,57 @@ export default function App() {
     setFilteredRegion(region);
   }
 
+  // FUNCTIONS
+  async function fetchCountries(url) {
+    try {
+      setIsLoading(true);
+
+      const res = await fetch(url);
+
+      if (!res.ok) {
+        throw new Error("🚨 Something went wrong fetching countries 🚨");
+      }
+
+      const data = await res.json();
+      setCountries(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   // EFFECTS
   useEffect(
     function () {
-      async function fetchCountries(url) {
+      // Fetch all countries if no region is selected, otherwise fetch countries by region
+      const url = filteredRegion
+        ? `https://restcountries.com/v3.1/region/${filteredRegion}`
+        : `https://restcountries.com/v3.1/all`;
+
+      fetchCountries(url);
+    },
+    [filteredRegion]
+  );
+
+  useEffect(
+    function () {
+      const controller = new AbortController();
+
+      let skipInitialRender = true;
+
+      async function fetchCountry() {
         try {
           setIsLoading(true);
+          setError("");
 
-          const res = await fetch(url);
+          const res = await fetch(
+            `https://restcountries.com/v3.1/name/${countryName}`,
+            { signal: controller.signal }
+          );
 
           if (!res.ok) {
-            throw new Error("🚨 Something went wrong fetching countries 🚨");
+            throw new Error("🚨 Something went wrong fetching country 🚨");
           }
 
           const data = await res.json();
@@ -44,14 +84,24 @@ export default function App() {
         }
       }
 
-      // Fetch all countries if no region is selected, otherwise fetch countries by region
-      const url = filteredRegion
-        ? `https://restcountries.com/v3.1/region/${filteredRegion}`
-        : `https://restcountries.com/v3.1/all`;
+      // Prevent fetching on initial mount because 'countryName' will be empty
+      if (skipInitialRender && !countryName) {
+        skipInitialRender = false;
+        return;
+      }
 
-      fetchCountries(url);
+      // If the search field is cleared, fetch all countries
+      if (!countryName) {
+        const url = `https://restcountries.com/v3.1/all`;
+        fetchCountries(url);
+        return;
+      }
+
+      fetchCountry();
+
+      return () => controller.abort();
     },
-    [filteredRegion]
+    [countryName]
   );
 
   return (
