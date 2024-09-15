@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // VARIABLES
 const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -11,6 +11,8 @@ export default function App() {
   const [countryName, setCountryName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isFilterDisplayed, setIsFilterDisplayed] = useState(true);
+  const initialRender = useRef(true);
 
   // HANDLER FUNCTIONS
   function handleThemeChange() {
@@ -57,9 +59,8 @@ export default function App() {
 
   useEffect(
     function () {
+      // VARIABLES
       const controller = new AbortController();
-
-      let skipInitialRender = true;
 
       async function fetchCountry() {
         try {
@@ -84,9 +85,9 @@ export default function App() {
         }
       }
 
-      // Prevent fetching on initial mount because 'countryName' will be empty
-      if (skipInitialRender && !countryName) {
-        skipInitialRender = false;
+      // Prevent fetching on initial mount because 'countryName' is empty
+      if (initialRender.current && !countryName) {
+        initialRender.current = false;
         return;
       }
 
@@ -256,16 +257,16 @@ function Search({ isLightTheme, countryName, setCountryName }) {
 
 function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
   // STATE
-  const [isDisplayed, setIsDisplayed] = useState(false);
+  const [isRegionsDisplayed, setIsRegionsDisplayed] = useState(false);
 
   // HANDLER FUNCTIONS
   function handleFilterHeaderClick() {
-    setIsDisplayed((isDisplayed) => !isDisplayed);
+    setIsRegionsDisplayed((isDisplayed) => !isDisplayed);
   }
 
   function handleRegionClick(region) {
     onRegionClick(region);
-    setIsDisplayed(false);
+    setIsRegionsDisplayed(false);
   }
 
   return (
@@ -280,7 +281,7 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
           {filteredRegion ? filteredRegion : "Filter by Region"}
         </span>
         <svg
-          className={`filter__arrow-icon ${isDisplayed ? "rotate" : ""}`}
+          className={`filter__arrow-icon ${isRegionsDisplayed ? "rotate" : ""}`}
           xmlns="http://www.w3.org/2000/svg"
           width="10"
           height="10"
@@ -297,7 +298,7 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
           />
         </svg>
       </div>
-      {isDisplayed && (
+      {isRegionsDisplayed && (
         <ul
           className={`filter__options ${
             !isLightTheme ? "dark-slate-grey-bg" : ""
