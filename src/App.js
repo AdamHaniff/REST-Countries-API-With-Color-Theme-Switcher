@@ -12,6 +12,8 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [isFilterDisplayed, setIsFilterDisplayed] = useState(true);
+
+  // REFS
   const initialRender = useRef(true);
 
   // HANDLER FUNCTIONS
@@ -64,8 +66,11 @@ export default function App() {
 
       async function fetchCountry() {
         try {
+          // Update state variables
           setIsLoading(true);
           setError("");
+          setIsFilterDisplayed(false);
+          setFilteredRegion(null);
 
           const res = await fetch(
             `https://restcountries.com/v3.1/name/${countryName}`,
@@ -91,10 +96,11 @@ export default function App() {
         return;
       }
 
-      // If the search field is cleared, fetch all countries
+      // If the search field is cleared, fetch all countries and display 'Filter' component
       if (!countryName) {
         const url = `https://restcountries.com/v3.1/all`;
         fetchCountries(url);
+        setIsFilterDisplayed(true);
         return;
       }
 
@@ -115,6 +121,7 @@ export default function App() {
           onRegionClick={handleRegionClick}
           countryName={countryName}
           setCountryName={setCountryName}
+          isFilterDisplayed={isFilterDisplayed}
         />
         {isLoading && <Spinner isLightTheme={isLightTheme} />}
         {!isLoading && error && (
@@ -209,6 +216,7 @@ function SearchFilter({
   onRegionClick,
   countryName,
   setCountryName,
+  isFilterDisplayed,
 }) {
   return (
     <div className="search-filter">
@@ -217,11 +225,13 @@ function SearchFilter({
         countryName={countryName}
         setCountryName={setCountryName}
       />
-      <Filter
-        isLightTheme={isLightTheme}
-        filteredRegion={filteredRegion}
-        onRegionClick={onRegionClick}
-      />
+      {isFilterDisplayed && (
+        <Filter
+          isLightTheme={isLightTheme}
+          filteredRegion={filteredRegion}
+          onRegionClick={onRegionClick}
+        />
+      )}
     </div>
   );
 }
@@ -259,6 +269,9 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
   // STATE
   const [isRegionsDisplayed, setIsRegionsDisplayed] = useState(false);
 
+  // REFS
+  const filterRef = useRef(null);
+
   // HANDLER FUNCTIONS
   function handleFilterHeaderClick() {
     setIsRegionsDisplayed((isDisplayed) => !isDisplayed);
@@ -269,8 +282,27 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
     setIsRegionsDisplayed(false);
   }
 
+  // EFFECTS
+  useEffect(
+    function () {
+      function handleOutsideClick(e) {
+        // Check if the click is outside the filter component
+        if (isRegionsDisplayed && !filterRef.current.contains(e.target)) {
+          setIsRegionsDisplayed(false);
+        }
+      }
+
+      document.addEventListener("mousedown", handleOutsideClick);
+
+      // Cleanup the event listener
+      return () =>
+        document.removeEventListener("mousedown", handleOutsideClick);
+    },
+    [isRegionsDisplayed]
+  );
+
   return (
-    <div className="filter">
+    <div className="filter" ref={filterRef}>
       <div
         className={`filter__header ${
           !isLightTheme ? "dark-slate-grey-bg" : ""
