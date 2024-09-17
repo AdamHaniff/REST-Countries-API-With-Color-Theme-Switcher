@@ -114,7 +114,7 @@ export default function App() {
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
       <Header isLightTheme={isLightTheme} onThemeChange={handleThemeChange} />
-      <div className="search-filter-countries">
+      {/* <div className="search-filter-countries">
         <SearchFilter
           isLightTheme={isLightTheme}
           filteredRegion={filteredRegion}
@@ -130,7 +130,8 @@ export default function App() {
         {!isLoading && !error && (
           <Countries isLightTheme={isLightTheme} countries={countries} />
         )}
-      </div>
+      </div> */}
+      <CountryDetails />
     </div>
   );
 }
@@ -405,6 +406,99 @@ function Country({ isLightTheme, countryObj }) {
             {capital}
           </span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CountryDetails() {
+  const country = {
+    flag: "images/belgium-flag.png",
+    name: "Belgium",
+    nativeName: "België",
+    population: "11,319,511",
+    region: "Europe",
+    subRegion: "Western Europe",
+    capital: "Brussels",
+    topLevelDomain: ".be",
+    currencies: "Euro",
+    languages: "Dutch, French, German",
+    borderCountries: ["France", "Germany", "Netherlands"],
+  };
+
+  return (
+    <div className="details">
+      <button className="details__back-btn" type="button">
+        <svg
+          className="details__back-arrow-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
+            fill="#111517"
+          />
+        </svg>
+        <span className="details__back-btn-label">Back</span>
+      </button>
+      <div className="details__flag-name">
+        <img
+          className="details__flag"
+          src={country.flag}
+          alt={`${country.name} flag`}
+        />
+        <span className="details__name">{country.name}</span>
+      </div>
+      <div className="details__overview">
+        <div className="details__label-value">
+          <span className="details__label">Native Name:&nbsp;</span>
+          <span className="details__value">{country.nativeName}</span>
+        </div>
+        <div className="details__label-value">
+          <span className="details__label">Population:&nbsp;</span>
+          <span className="details__value">{country.population}</span>
+        </div>
+        <div className="details__label-value">
+          <span className="details__label">Region:&nbsp;</span>
+          <span className="details__value">{country.region}</span>
+        </div>
+        <div className="details__label-value">
+          <span className="details__label">Sub Region:&nbsp;</span>
+          <span className="details__value">{country.subRegion}</span>
+        </div>
+        <div className="details__label-value">
+          <span className="details__label">Capital:&nbsp;</span>
+          <span className="details__value">{country.capital}</span>
+        </div>
+      </div>
+      <div className="details__overview">
+        <div className="details__label-value">
+          <span className="details__label">Top Level Domain:&nbsp;</span>
+          <span className="details__value">{country.topLevelDomain}</span>
+        </div>
+        <div className="details__label-value">
+          <span className="details__label">Currencies:&nbsp;</span>
+          <span className="details__value">{country.currencies}</span>
+        </div>
+        <div className="details__label-value">
+          <span className="details__label">Languages:&nbsp;</span>
+          <span className="details__value">{country.languages}</span>
+        </div>
+      </div>
+      <div className="border-countries">
+        <span className="border-countries__label">Border Countries:</span>
+        <ul className="border-countries__container">
+          {country.borderCountries.map((country) => (
+            <li className="border-countries__country" key={country}>
+              {country}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
