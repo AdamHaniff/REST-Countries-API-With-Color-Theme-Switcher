@@ -246,6 +246,10 @@ body,
   font-weight: 800;
 }
 
+.details {
+  padding: 4rem 2.8rem 6.5rem;
+}
+
 .dark-slate-grey-bg {
   background: #2b3844;
 }

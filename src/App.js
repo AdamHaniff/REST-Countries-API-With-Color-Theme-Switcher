@@ -438,68 +438,62 @@ function CountryDetails() {
           fill="none"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
             fill="#111517"
           />
         </svg>
         <span className="details__back-btn-label">Back</span>
       </button>
-      <div className="details__flag-name">
+      <div className="details__flag-overview">
         <img
           className="details__flag"
           src={country.flag}
           alt={`${country.name} flag`}
         />
-        <span className="details__name">{country.name}</span>
-      </div>
-      <div className="details__overview">
-        <div className="details__label-value">
-          <span className="details__label">Native Name:&nbsp;</span>
-          <span className="details__value">{country.nativeName}</span>
-        </div>
-        <div className="details__label-value">
-          <span className="details__label">Population:&nbsp;</span>
-          <span className="details__value">{country.population}</span>
-        </div>
-        <div className="details__label-value">
-          <span className="details__label">Region:&nbsp;</span>
-          <span className="details__value">{country.region}</span>
-        </div>
-        <div className="details__label-value">
-          <span className="details__label">Sub Region:&nbsp;</span>
-          <span className="details__value">{country.subRegion}</span>
-        </div>
-        <div className="details__label-value">
-          <span className="details__label">Capital:&nbsp;</span>
-          <span className="details__value">{country.capital}</span>
-        </div>
-      </div>
-      <div className="details__overview">
-        <div className="details__label-value">
-          <span className="details__label">Top Level Domain:&nbsp;</span>
-          <span className="details__value">{country.topLevelDomain}</span>
-        </div>
-        <div className="details__label-value">
-          <span className="details__label">Currencies:&nbsp;</span>
-          <span className="details__value">{country.currencies}</span>
-        </div>
-        <div className="details__label-value">
-          <span className="details__label">Languages:&nbsp;</span>
-          <span className="details__value">{country.languages}</span>
+        <div className="details__overview-border">
+          <div className="details__overview-container">
+            <div className="details__name-overview">
+              <span className="details__name">{country.name}</span>
+              <div className="details__overview">
+                <LabelValue label="Native Name" value={country.nativeName} />
+                <LabelValue label="Population" value={country.population} />
+                <LabelValue label="Region" value={country.region} />
+                <LabelValue label="Sub Region" value={country.subRegion} />
+                <LabelValue label="Capital" value={country.capital} />
+              </div>
+            </div>
+            <div className="details__overview">
+              <LabelValue
+                label="Top Level Domain"
+                value={country.topLevelDomain}
+              />
+              <LabelValue label="Currencies" value={country.currencies} />
+              <LabelValue label="Languages" value={country.languages} />
+            </div>
+          </div>
+          <div className="border-countries">
+            <span className="border-countries__label">Border Countries:</span>
+            <ul className="border-countries__container">
+              {country.borderCountries.map((country) => (
+                <li className="border-countries__country" key={country}>
+                  {country}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-      <div className="border-countries">
-        <span className="border-countries__label">Border Countries:</span>
-        <ul className="border-countries__container">
-          {country.borderCountries.map((country) => (
-            <li className="border-countries__country" key={country}>
-              {country}
-            </li>
-          ))}
-        </ul>
-      </div>
+    </div>
+  );
+}
+
+function LabelValue({ label, value }) {
+  return (
+    <div className="details__label-value">
+      <span className="details__label">{label}:&nbsp;</span>
+      <span className="details__value">{value}</span>
     </div>
   );
 }

@@ -304,6 +304,11 @@ body,
   font-weight: $fw-extra-bold;
 }
 
+// ************* DETAILS *************
+.details {
+  padding: 4rem 2.8rem 6.5rem;
+}
+
 // ******** DYNAMIC STYLES ********
 .dark-slate-grey-bg {
   background: $color-dark-slate-grey;
