@@ -248,6 +248,110 @@ body,
 
 .details {
   padding: 4rem 2.8rem 6.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 6.4rem;
+}
+.details__back-btn {
+  width: 10.4rem;
+  height: 3.2rem;
+  border-radius: 0.2rem;
+  background: #fff;
+  box-shadow: 0 0 0.7rem 0 rgba(0, 0, 0, 0.29);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  transition: background 0.3s;
+}
+.details__back-arrow-icon {
+  display: block;
+}
+.details__back-arrow-icon-path {
+  fill: #111517;
+  transition: fill 0.3s;
+}
+.details__back-btn-label {
+  color: #111517;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 2rem;
+  transition: color 0.3;
+}
+.details__flag-overview {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.details__flag {
+  display: block;
+  max-width: 32rem;
+  height: 25rem;
+  border-radius: 0.5rem;
+}
+.details__overview-border {
+  display: flex;
+  flex-direction: column;
+  gap: 3.4rem;
+}
+.details__overview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+.details__name-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.details__name {
+  color: #111517;
+  font-size: 2.2rem;
+  font-weight: 800;
+  transition: color 0.3s;
+}
+.details__label-value {
+  color: #111517;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 3.2rem;
+}
+.details__value {
+  font-weight: 300;
+}
+
+.border-countries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.border-countries__label {
+  color: #111517;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.4rem;
+}
+.border-countries__container {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.border-countries__country {
+  flex: 1;
+  height: 2.8rem;
+  border-radius: 0.2rem;
+  background: #fff;
+  box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #111517;
+  font-size: 1.2rem;
+  font-weight: 300;
 }
 
 .dark-slate-grey-bg {

@@ -131,7 +131,7 @@ export default function App() {
           <Countries isLightTheme={isLightTheme} countries={countries} />
         )}
       </div> */}
-      <CountryDetails />
+      <CountryDetails isLightTheme={isLightTheme} />
     </div>
   );
 }
@@ -411,7 +411,7 @@ function Country({ isLightTheme, countryObj }) {
   );
 }
 
-function CountryDetails() {
+function CountryDetails({ isLightTheme }) {
   const country = {
     flag: "images/belgium-flag.png",
     name: "Belgium",
@@ -428,7 +428,12 @@ function CountryDetails() {
 
   return (
     <div className="details">
-      <button className="details__back-btn" type="button">
+      <button
+        className={`details__back-btn ${
+          !isLightTheme ? "dark-slate-grey-bg" : ""
+        }`}
+        type="button"
+      >
         <svg
           className="details__back-arrow-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -438,13 +443,22 @@ function CountryDetails() {
           fill="none"
         >
           <path
+            className={`details__back-arrow-icon-path ${
+              !isLightTheme ? "white-fill" : ""
+            }`}
             fillRule="evenodd"
             clipRule="evenodd"
             d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
             fill="#111517"
           />
         </svg>
-        <span className="details__back-btn-label">Back</span>
+        <span
+          className={`details__back-btn-label ${
+            !isLightTheme ? "white-color" : ""
+          }`}
+        >
+          Back
+        </span>
       </button>
       <div className="details__flag-overview">
         <img
@@ -455,7 +469,13 @@ function CountryDetails() {
         <div className="details__overview-border">
           <div className="details__overview-container">
             <div className="details__name-overview">
-              <span className="details__name">{country.name}</span>
+              <span
+                className={`details__name ${
+                  !isLightTheme ? "white-color" : ""
+                }`}
+              >
+                {country.name}
+              </span>
               <div className="details__overview">
                 <LabelValue label="Native Name" value={country.nativeName} />
                 <LabelValue label="Population" value={country.population} />

@@ -307,6 +307,126 @@ body,
 // ************* DETAILS *************
 .details {
   padding: 4rem 2.8rem 6.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 6.4rem;
+
+  &__back-btn {
+    width: 10.4rem;
+    height: 3.2rem;
+    border-radius: 0.2rem;
+    background: $color-white;
+    box-shadow: 0 0 0.7rem 0 rgba(0, 0, 0, 0.29);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: background 0.3s;
+  }
+
+  &__back-arrow-icon {
+    display: block;
+
+    &-path {
+      fill: $color-cinder;
+      transition: fill 0.3s;
+    }
+  }
+
+  &__back-btn-label {
+    color: $color-cinder;
+    font-family: $font-nunito-sans;
+    font-size: 1.4rem;
+    font-weight: $fw-light;
+    line-height: 2rem;
+    transition: color 0.3;
+  }
+
+  &__flag-overview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  &__flag {
+    display: block;
+    max-width: 32rem;
+    height: 25rem;
+    border-radius: 0.5rem;
+  }
+
+  &__overview-border {
+    display: flex;
+    flex-direction: column;
+    gap: 3.4rem;
+  }
+
+  &__overview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+
+  &__name-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__name {
+    color: $color-cinder;
+    font-size: 2.2rem;
+    font-weight: $fw-extra-bold;
+    transition: color 0.3s;
+  }
+
+  &__label-value {
+    color: $color-cinder;
+    font-size: 1.4rem;
+    font-weight: $fw-semi-bold;
+    line-height: 3.2rem;
+  }
+
+  &__value {
+    font-weight: $fw-light;
+  }
+}
+
+// ********* BORDER-COUNTRIES *********
+.border-countries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  &__label {
+    color: $color-cinder;
+    font-size: 1.6rem;
+    font-weight: $fw-semi-bold;
+    line-height: 2.4rem;
+  }
+
+  &__container {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__country {
+    flex: 1;
+    height: 2.8rem;
+    border-radius: 0.2rem;
+    background: $color-white;
+    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-cinder;
+    font-size: 1.2rem;
+    font-weight: $fw-light;
+  }
 }
 
 // ******** DYNAMIC STYLES ********
