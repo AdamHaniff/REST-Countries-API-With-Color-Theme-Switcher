@@ -1,7 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createContext, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 
 // VARIABLES
 const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+
+// CONTEXTS
+const ThemeContext = createContext();
 
 export default function App() {
   // STATE
@@ -12,6 +21,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [isFilterDisplayed, setIsFilterDisplayed] = useState(true);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   // REFS
   const initialRender = useRef(true);
@@ -24,6 +34,11 @@ export default function App() {
   function handleRegionClick(region) {
     if (region === filteredRegion) return;
     setFilteredRegion(region);
+  }
+
+  function handleCountryClick(country) {
+    setSelectedCountry(country);
+    console.log(country);
   }
 
   // FUNCTIONS
@@ -114,7 +129,7 @@ export default function App() {
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
       <Header isLightTheme={isLightTheme} onThemeChange={handleThemeChange} />
-      {/* <div className="search-filter-countries">
+      <div className="search-filter-countries">
         <SearchFilter
           isLightTheme={isLightTheme}
           filteredRegion={filteredRegion}
@@ -128,10 +143,14 @@ export default function App() {
           <ErrorMessage message={error} isLightTheme={isLightTheme} />
         )}
         {!isLoading && !error && (
-          <Countries isLightTheme={isLightTheme} countries={countries} />
+          <Countries
+            isLightTheme={isLightTheme}
+            countries={countries}
+            onCountryClick={handleCountryClick}
+          />
         )}
-      </div> */}
-      <CountryDetails isLightTheme={isLightTheme} />
+      </div>
+      {/* <CountryDetails isLightTheme={isLightTheme} /> */}
     </div>
   );
 }
@@ -352,7 +371,7 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
   );
 }
 
-function Countries({ isLightTheme, countries }) {
+function Countries({ isLightTheme, countries, onCountryClick }) {
   return (
     <div className="countries">
       {countries.map((country) => (
@@ -360,13 +379,14 @@ function Countries({ isLightTheme, countries }) {
           isLightTheme={isLightTheme}
           key={country.name.common}
           countryObj={country}
+          onCountryClick={onCountryClick}
         />
       ))}
     </div>
   );
 }
 
-function Country({ isLightTheme, countryObj }) {
+function Country({ isLightTheme, countryObj, onCountryClick }) {
   // VARIABLES
   const {
     flags: { png: countryFlag } = {},
@@ -380,7 +400,7 @@ function Country({ isLightTheme, countryObj }) {
   const formattedPopulation = population.toLocaleString();
 
   return (
-    <div className="country">
+    <div className="country" onClick={() => onCountryClick(countryObj)}>
       <img
         className="country__flag"
         src={countryFlag}
@@ -427,91 +447,111 @@ function CountryDetails({ isLightTheme }) {
   };
 
   return (
-    <div className="details">
-      <button
-        className={`details__back-btn ${
-          !isLightTheme ? "dark-slate-grey-bg" : ""
-        }`}
-        type="button"
-      >
-        <svg
-          className="details__back-arrow-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-        >
-          <path
-            className={`details__back-arrow-icon-path ${
-              !isLightTheme ? "white-fill" : ""
-            }`}
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
-            fill="#111517"
-          />
-        </svg>
-        <span
-          className={`details__back-btn-label ${
-            !isLightTheme ? "white-color" : ""
+    <ThemeContext.Provider value={isLightTheme}>
+      <div className="details">
+        <button
+          className={`details__back-btn ${
+            !isLightTheme ? "dark-slate-grey-bg" : ""
           }`}
+          type="button"
         >
-          Back
-        </span>
-      </button>
-      <div className="details__flag-overview">
-        <img
-          className="details__flag"
-          src={country.flag}
-          alt={`${country.name} flag`}
-        />
-        <div className="details__overview-border">
-          <div className="details__overview-container">
-            <div className="details__name-overview">
+          <svg
+            className="details__back-arrow-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+          >
+            <path
+              className={`details__back-arrow-icon-path ${
+                !isLightTheme ? "white-fill" : ""
+              }`}
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
+              fill="#111517"
+            />
+          </svg>
+          <span
+            className={`details__back-btn-label ${
+              !isLightTheme ? "white-color" : ""
+            }`}
+          >
+            Back
+          </span>
+        </button>
+        <div className="details__flag-overview">
+          <img
+            className="details__flag"
+            src={country.flag}
+            alt={`${country.name} flag`}
+          />
+          <div className="details__overview-border">
+            <div className="details__overview-container">
+              <div className="details__name-overview">
+                <span
+                  className={`details__name ${
+                    !isLightTheme ? "white-color" : ""
+                  }`}
+                >
+                  {country.name}
+                </span>
+                <div className="details__overview">
+                  <LabelValue label="Native Name" value={country.nativeName} />
+                  <LabelValue label="Population" value={country.population} />
+                  <LabelValue label="Region" value={country.region} />
+                  <LabelValue label="Sub Region" value={country.subRegion} />
+                  <LabelValue label="Capital" value={country.capital} />
+                </div>
+              </div>
+              <div className="details__overview">
+                <LabelValue
+                  label="Top Level Domain"
+                  value={country.topLevelDomain}
+                />
+                <LabelValue label="Currencies" value={country.currencies} />
+                <LabelValue label="Languages" value={country.languages} />
+              </div>
+            </div>
+            <div className="border-countries">
               <span
-                className={`details__name ${
+                className={`border-countries__label ${
                   !isLightTheme ? "white-color" : ""
                 }`}
               >
-                {country.name}
+                Border Countries:
               </span>
-              <div className="details__overview">
-                <LabelValue label="Native Name" value={country.nativeName} />
-                <LabelValue label="Population" value={country.population} />
-                <LabelValue label="Region" value={country.region} />
-                <LabelValue label="Sub Region" value={country.subRegion} />
-                <LabelValue label="Capital" value={country.capital} />
-              </div>
+              <ul className="border-countries__container">
+                {country.borderCountries.map((country) => (
+                  <li
+                    className={`border-countries__country ${
+                      !isLightTheme
+                        ? "dark-slate-grey-bg white-color box-shadow-dark"
+                        : ""
+                    }`}
+                    key={country}
+                  >
+                    {country}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="details__overview">
-              <LabelValue
-                label="Top Level Domain"
-                value={country.topLevelDomain}
-              />
-              <LabelValue label="Currencies" value={country.currencies} />
-              <LabelValue label="Languages" value={country.languages} />
-            </div>
-          </div>
-          <div className="border-countries">
-            <span className="border-countries__label">Border Countries:</span>
-            <ul className="border-countries__container">
-              {country.borderCountries.map((country) => (
-                <li className="border-countries__country" key={country}>
-                  {country}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 
 function LabelValue({ label, value }) {
+  // VARIABLES
+  const isLightTheme = useContext(ThemeContext);
+
   return (
-    <div className="details__label-value">
+    <div
+      className={`details__label-value ${!isLightTheme ? "white-color" : ""}`}
+    >
       <span className="details__label">{label}:&nbsp;</span>
       <span className="details__value">{value}</span>
     </div>

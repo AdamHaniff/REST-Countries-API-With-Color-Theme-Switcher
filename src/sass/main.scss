@@ -388,6 +388,7 @@ body,
     font-size: 1.4rem;
     font-weight: $fw-semi-bold;
     line-height: 3.2rem;
+    transition: color 0.3s;
   }
 
   &__value {
@@ -406,6 +407,7 @@ body,
     font-size: 1.6rem;
     font-weight: $fw-semi-bold;
     line-height: 2.4rem;
+    transition: color 0.3s;
   }
 
   &__container {
@@ -426,6 +428,7 @@ body,
     color: $color-cinder;
     font-size: 1.2rem;
     font-weight: $fw-light;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
   }
 }
 
@@ -453,4 +456,8 @@ body,
 .border-dark {
   border: 0.5rem solid $color-white;
   border-top: 0.5rem solid $color-dark-slate-grey;
+}
+
+.box-shadow-dark {
+  box-shadow: 0 0 0.4rem 0.1rem rgba(17, 21, 23, 0.25);
 }
