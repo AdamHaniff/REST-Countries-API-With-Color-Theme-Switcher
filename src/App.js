@@ -1,10 +1,5 @@
 import { useState, useEffect, useRef, createContext, useContext } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 // VARIABLES
 const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -23,6 +18,9 @@ export default function App() {
   const [isFilterDisplayed, setIsFilterDisplayed] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState(null);
 
+  // VARIABLES
+  const navigate = useNavigate();
+
   // REFS
   const initialRender = useRef(true);
 
@@ -37,8 +35,11 @@ export default function App() {
   }
 
   function handleCountryClick(country) {
+    // Update 'selectedCountry'
     setSelectedCountry(country);
-    console.log(country);
+
+    // Navigate to the route for the selected country
+    navigate(`/country/${country.cca3}`);
   }
 
   // FUNCTIONS
@@ -129,28 +130,47 @@ export default function App() {
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
       <Header isLightTheme={isLightTheme} onThemeChange={handleThemeChange} />
-      <div className="search-filter-countries">
-        <SearchFilter
-          isLightTheme={isLightTheme}
-          filteredRegion={filteredRegion}
-          onRegionClick={handleRegionClick}
-          countryName={countryName}
-          setCountryName={setCountryName}
-          isFilterDisplayed={isFilterDisplayed}
+
+      <Routes>
+        {/* Default Route (Home) */}
+        <Route
+          path="/"
+          element={
+            <div className="search-filter-countries">
+              <SearchFilter
+                isLightTheme={isLightTheme}
+                filteredRegion={filteredRegion}
+                onRegionClick={handleRegionClick}
+                countryName={countryName}
+                setCountryName={setCountryName}
+                isFilterDisplayed={isFilterDisplayed}
+              />
+              {isLoading && <Spinner isLightTheme={isLightTheme} />}
+              {!isLoading && error && (
+                <ErrorMessage message={error} isLightTheme={isLightTheme} />
+              )}
+              {!isLoading && !error && (
+                <Countries
+                  isLightTheme={isLightTheme}
+                  countries={countries}
+                  onCountryClick={handleCountryClick}
+                />
+              )}
+            </div>
+          }
         />
-        {isLoading && <Spinner isLightTheme={isLightTheme} />}
-        {!isLoading && error && (
-          <ErrorMessage message={error} isLightTheme={isLightTheme} />
-        )}
-        {!isLoading && !error && (
-          <Countries
-            isLightTheme={isLightTheme}
-            countries={countries}
-            onCountryClick={handleCountryClick}
-          />
-        )}
-      </div>
-      {/* <CountryDetails isLightTheme={isLightTheme} /> */}
+
+        {/* Country Details Route */}
+        <Route
+          path="/country/:countryCode"
+          element={
+            <CountryDetails
+              isLightTheme={isLightTheme}
+              selectedCountry={selectedCountry}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
@@ -431,9 +451,9 @@ function Country({ isLightTheme, countryObj, onCountryClick }) {
   );
 }
 
-function CountryDetails({ isLightTheme }) {
+function CountryDetails({ isLightTheme, selectedCountry }) {
   const country = {
-    flag: "images/belgium-flag.png",
+    flag: "/images/belgium-flag.png",
     name: "Belgium",
     nativeName: "België",
     population: "11,319,511",
@@ -445,6 +465,20 @@ function CountryDetails({ isLightTheme }) {
     languages: "Dutch, French, German",
     borderCountries: ["France", "Germany", "Netherlands"],
   };
+
+  const {
+    flags: { png: flag },
+    name: { common: name },
+    altSpellings: [, nativeName],
+    population,
+    region,
+    subregion,
+    capital: [capital],
+    tld: [tld],
+    // DESTRUCTURE OUT THE REST OF THE PROPERTIES
+  } = selectedCountry;
+
+  console.log(selectedCountry);
 
   return (
     <ThemeContext.Provider value={isLightTheme}>
