@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, createContext, useContext } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import countryCodes from "./data.js/countryCodes";
 
 // VARIABLES
 const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -452,33 +453,19 @@ function Country({ isLightTheme, countryObj, onCountryClick }) {
 }
 
 function CountryDetails({ isLightTheme, selectedCountry }) {
-  const country = {
-    flag: "/images/belgium-flag.png",
-    name: "Belgium",
-    nativeName: "België",
-    population: "11,319,511",
-    region: "Europe",
-    subRegion: "Western Europe",
-    capital: "Brussels",
-    topLevelDomain: ".be",
-    currencies: "Euro",
-    languages: "Dutch, French, German",
-    borderCountries: ["France", "Germany", "Netherlands"],
-  };
-
   const {
-    flags: { png: flag },
-    name: { common: name },
-    altSpellings: [, nativeName],
-    population,
-    region,
-    subregion,
-    capital: [capital],
-    tld: [tld],
-    // DESTRUCTURE OUT THE REST OF THE PROPERTIES
-  } = selectedCountry;
-
-  console.log(selectedCountry);
+    flags: { png: flag } = { png: "N/A" },
+    name: { common: name } = { common: "N/A" },
+    altSpellings: [, nativeName] = ["N/A", "N/A"],
+    population = "N/A",
+    region = "N/A",
+    subregion = "N/A",
+    capital: [capital] = ["N/A"],
+    tld: [tld] = ["N/A"],
+    currencies = "N/A",
+    languages = "N/A",
+    borders: borderCountries = ["N/A"],
+  } = selectedCountry || {};
 
   return (
     <ThemeContext.Provider value={isLightTheme}>
@@ -516,11 +503,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
           </span>
         </button>
         <div className="details__flag-overview">
-          <img
-            className="details__flag"
-            src={country.flag}
-            alt={`${country.name} flag`}
-          />
+          <img className="details__flag" src={flag} alt={`${name} flag`} />
           <div className="details__overview-border">
             <div className="details__overview-container">
               <div className="details__name-overview">
@@ -529,23 +512,20 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
                     !isLightTheme ? "white-color" : ""
                   }`}
                 >
-                  {country.name}
+                  {name}
                 </span>
                 <div className="details__overview">
-                  <LabelValue label="Native Name" value={country.nativeName} />
-                  <LabelValue label="Population" value={country.population} />
-                  <LabelValue label="Region" value={country.region} />
-                  <LabelValue label="Sub Region" value={country.subRegion} />
-                  <LabelValue label="Capital" value={country.capital} />
+                  <LabelValue label="Native Name" value={nativeName} />
+                  <LabelValue label="Population" value={population} />
+                  <LabelValue label="Region" value={region} />
+                  <LabelValue label="Sub Region" value={subregion} />
+                  <LabelValue label="Capital" value={capital} />
                 </div>
               </div>
               <div className="details__overview">
-                <LabelValue
-                  label="Top Level Domain"
-                  value={country.topLevelDomain}
-                />
-                <LabelValue label="Currencies" value={country.currencies} />
-                <LabelValue label="Languages" value={country.languages} />
+                <LabelValue label="Top Level Domain" value={tld} />
+                <LabelValue label="Currencies" value={currencies} />
+                <LabelValue label="Languages" value={languages} />
               </div>
             </div>
             <div className="border-countries">
@@ -557,7 +537,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
                 Border Countries:
               </span>
               <ul className="border-countries__container">
-                {country.borderCountries.map((country) => (
+                {borderCountries.map((country) => (
                   <li
                     className={`border-countries__country ${
                       !isLightTheme
