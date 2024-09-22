@@ -453,10 +453,11 @@ function Country({ isLightTheme, countryObj, onCountryClick }) {
 }
 
 function CountryDetails({ isLightTheme, selectedCountry }) {
+  // VARIABLES
   const {
     flags: { png: flag } = { png: "N/A" },
     name: { common: name } = { common: "N/A" },
-    altSpellings: [, nativeName] = ["N/A", "N/A"],
+    altSpellings: [nativeName] = ["N/A"],
     population = "N/A",
     region = "N/A",
     subregion = "N/A",
@@ -466,6 +467,15 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
     languages = "N/A",
     borders: borderCountries = ["N/A"],
   } = selectedCountry || {};
+
+  const formattedPopulation = population.toLocaleString();
+  const formattedCurrencies = Object.values(currencies)
+    .map((currency) => currency.name)
+    .join(", ");
+  const formattedLanguages = Object.values(languages).join(", ");
+  const formattedBorderCountries = borderCountries.map(
+    (country) => countryCodes[country]
+  );
 
   return (
     <ThemeContext.Provider value={isLightTheme}>
@@ -516,7 +526,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
                 </span>
                 <div className="details__overview">
                   <LabelValue label="Native Name" value={nativeName} />
-                  <LabelValue label="Population" value={population} />
+                  <LabelValue label="Population" value={formattedPopulation} />
                   <LabelValue label="Region" value={region} />
                   <LabelValue label="Sub Region" value={subregion} />
                   <LabelValue label="Capital" value={capital} />
@@ -524,8 +534,8 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
               </div>
               <div className="details__overview">
                 <LabelValue label="Top Level Domain" value={tld} />
-                <LabelValue label="Currencies" value={currencies} />
-                <LabelValue label="Languages" value={languages} />
+                <LabelValue label="Currencies" value={formattedCurrencies} />
+                <LabelValue label="Languages" value={formattedLanguages} />
               </div>
             </div>
             <div className="border-countries">
@@ -537,7 +547,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
                 Border Countries:
               </span>
               <ul className="border-countries__container">
-                {borderCountries.map((country) => (
+                {formattedBorderCountries.map((country) => (
                   <li
                     className={`border-countries__country ${
                       !isLightTheme
