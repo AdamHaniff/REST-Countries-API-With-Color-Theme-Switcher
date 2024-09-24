@@ -340,10 +340,11 @@ body,
 .border-countries__container {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 .border-countries__country {
-  flex: 1;
+  width: 9.6rem;
   height: 2.8rem;
   border-radius: 0.2rem;
   background: #fff;
