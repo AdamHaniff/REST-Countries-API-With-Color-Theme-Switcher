@@ -39,8 +39,10 @@ export default function App() {
     // Update 'selectedCountry'
     setSelectedCountry(country);
 
-    // Navigate to the route for the selected country
-    navigate(`/country/${country.cca3}`);
+    // Check if the country has a cca3 property before navigating
+    if (country.cca3) {
+      navigate(`/country/${country.cca3}`);
+    }
   }
 
   // FUNCTIONS
@@ -410,11 +412,11 @@ function Countries({ isLightTheme, countries, onCountryClick }) {
 function Country({ isLightTheme, countryObj, onCountryClick }) {
   // VARIABLES
   const {
-    flags: { png: countryFlag } = {},
-    name: { common: country } = {},
-    population = "Unknown population",
-    region = "Unknown region",
-    capital: [capital] = ["Unknown capital"],
+    flags: { png: countryFlag } = { png: "N/A" },
+    name: { common: country } = { common: "N/A" },
+    population = "N/A",
+    region = "N/A",
+    capital: [capital] = ["N/A"],
   } = countryObj;
 
   // Format the population with commas
@@ -476,6 +478,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
   const formattedBorderCountries = borderCountries.map(
     (country) => countryCodes[country]
   );
+  const hasBorders = selectedCountry?.hasOwnProperty("borders") || false;
 
   return (
     <ThemeContext.Provider value={isLightTheme}>
@@ -539,27 +542,33 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
               </div>
             </div>
             <div className="border-countries">
-              <span
-                className={`border-countries__label ${
-                  !isLightTheme ? "white-color" : ""
-                }`}
-              >
-                Border Countries:
-              </span>
-              <ul className="border-countries__container">
-                {formattedBorderCountries.map((country) => (
-                  <li
-                    className={`border-countries__country ${
-                      !isLightTheme
-                        ? "dark-slate-grey-bg white-color box-shadow-dark"
-                        : ""
+              {hasBorders ? (
+                <>
+                  <span
+                    className={`border-countries__label ${
+                      !isLightTheme ? "white-color" : ""
                     }`}
-                    key={country}
                   >
-                    {country}
-                  </li>
-                ))}
-              </ul>
+                    Border Countries:
+                  </span>
+                  <ul className="border-countries__container">
+                    {formattedBorderCountries.map((country) => (
+                      <li
+                        className={`border-countries__country ${
+                          !isLightTheme
+                            ? "dark-slate-grey-bg white-color box-shadow-dark"
+                            : ""
+                        }`}
+                        key={country}
+                      >
+                        {country}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <LabelValue label="Border Countries" value="N/A" />
+              )}
             </div>
           </div>
         </div>
