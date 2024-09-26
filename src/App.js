@@ -45,6 +45,18 @@ export default function App() {
     }
   }
 
+  function handleBackBtnClick() {
+    // Set 'selectedCountry' back to its default value
+    setSelectedCountry(null);
+
+    // Go back to homepage
+    navigate("/");
+  }
+
+  function handleBorderCountryClick(borderCountry) {
+    console.log(countries);
+  }
+
   // FUNCTIONS
   async function fetchCountries(url) {
     try {
@@ -170,6 +182,8 @@ export default function App() {
             <CountryDetails
               isLightTheme={isLightTheme}
               selectedCountry={selectedCountry}
+              onBackBtnClick={handleBackBtnClick}
+              onBorderCountryClick={handleBorderCountryClick}
             />
           }
         />
@@ -454,7 +468,12 @@ function Country({ isLightTheme, countryObj, onCountryClick }) {
   );
 }
 
-function CountryDetails({ isLightTheme, selectedCountry }) {
+function CountryDetails({
+  isLightTheme,
+  selectedCountry,
+  onBackBtnClick,
+  onBorderCountryClick,
+}) {
   // VARIABLES
   const {
     flags: { png: flag } = { png: "N/A" },
@@ -488,6 +507,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
             !isLightTheme ? "dark-slate-grey-bg" : ""
           }`}
           type="button"
+          onClick={onBackBtnClick}
         >
           <svg
             className="details__back-arrow-icon"
@@ -560,6 +580,7 @@ function CountryDetails({ isLightTheme, selectedCountry }) {
                             : ""
                         }`}
                         key={country}
+                        onClick={() => onBorderCountryClick(country)}
                       >
                         {country}
                       </li>
