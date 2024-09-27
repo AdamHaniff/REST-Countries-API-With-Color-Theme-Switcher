@@ -315,6 +315,7 @@ body,
   transition: color 0.3s;
 }
 .details__label-value {
+  display: flex;
   color: #111517;
   font-size: 1.4rem;
   font-weight: 600;

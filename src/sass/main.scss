@@ -384,6 +384,7 @@ body,
   }
 
   &__label-value {
+    display: flex;
     color: $color-cinder;
     font-size: 1.4rem;
     font-weight: $fw-semi-bold;

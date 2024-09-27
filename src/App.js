@@ -24,6 +24,7 @@ export default function App() {
 
   // REFS
   const initialRender = useRef(true);
+  const countriesData = useRef([]);
 
   // HANDLER FUNCTIONS
   function handleThemeChange() {
@@ -54,7 +55,11 @@ export default function App() {
   }
 
   function handleBorderCountryClick(borderCountry) {
-    console.log(countries);
+    const borderCountryObj = countriesData.current.find(
+      (country) => country.name.common === borderCountry
+    );
+
+    handleCountryClick(borderCountryObj);
   }
 
   // FUNCTIONS
@@ -70,6 +75,9 @@ export default function App() {
 
       const data = await res.json();
       setCountries(data);
+
+      // Update the ref with the fetched data
+      countriesData.current = data;
     } catch (err) {
       setError(err.message);
     } finally {
