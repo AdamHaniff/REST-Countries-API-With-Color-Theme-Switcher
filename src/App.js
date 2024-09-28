@@ -192,6 +192,7 @@ export default function App() {
               selectedCountry={selectedCountry}
               onBackBtnClick={handleBackBtnClick}
               onBorderCountryClick={handleBorderCountryClick}
+              countriesData={countriesData}
             />
           }
         />
@@ -481,6 +482,7 @@ function CountryDetails({
   selectedCountry,
   onBackBtnClick,
   onBorderCountryClick,
+  countriesData,
 }) {
   // VARIABLES
   const {
@@ -544,7 +546,11 @@ function CountryDetails({
           </span>
         </button>
         <div className="details__flag-overview">
-          <img className="details__flag" src={flag} alt={`${name} flag`} />
+          <img
+            className="details__flag"
+            src={flag}
+            alt={name === "N/A" ? name : `${name} flag`}
+          />
           <div className="details__overview-border">
             <div className="details__overview-container">
               <div className="details__name-overview">
@@ -565,8 +571,16 @@ function CountryDetails({
               </div>
               <div className="details__overview">
                 <LabelValue label="Top Level Domain" value={tld} />
-                <LabelValue label="Currencies" value={formattedCurrencies} />
-                <LabelValue label="Languages" value={formattedLanguages} />
+                <LabelValue
+                  label="Currencies"
+                  value={
+                    currencies === "N/A" ? currencies : formattedCurrencies
+                  }
+                />
+                <LabelValue
+                  label="Languages"
+                  value={languages === "N/A" ? languages : formattedLanguages}
+                />
               </div>
             </div>
             <div className="border-countries">
@@ -580,19 +594,24 @@ function CountryDetails({
                     Border Countries:
                   </span>
                   <ul className="border-countries__container">
-                    {formattedBorderCountries.map((country) => (
-                      <li
-                        className={`border-countries__country ${
-                          !isLightTheme
-                            ? "dark-slate-grey-bg white-color box-shadow-dark"
-                            : ""
-                        }`}
-                        key={country}
-                        onClick={() => onBorderCountryClick(country)}
-                      >
-                        {country}
-                      </li>
-                    ))}
+                    {formattedBorderCountries.map(
+                      (borderCountry) =>
+                        countriesData.current.some(
+                          (country) => country.name.common === borderCountry
+                        ) && (
+                          <li
+                            className={`border-countries__country ${
+                              !isLightTheme
+                                ? "dark-slate-grey-bg white-color box-shadow-dark"
+                                : ""
+                            }`}
+                            key={borderCountry}
+                            onClick={() => onBorderCountryClick(borderCountry)}
+                          >
+                            {borderCountry}
+                          </li>
+                        )
+                    )}
                   </ul>
                 </>
               ) : (
