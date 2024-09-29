@@ -135,10 +135,9 @@ export default function App() {
         return;
       }
 
-      // If the search field is cleared, fetch all countries and display 'Filter' component
+      // If the search field is cleared, display all countries and display 'Filter' component
       if (!countryName) {
-        const url = `https://restcountries.com/v3.1/all`;
-        fetchCountries(url);
+        setCountries(countriesData.current);
         setIsFilterDisplayed(true);
         return;
       }
@@ -450,7 +449,7 @@ function Country({ isLightTheme, countryObj, onCountryClick }) {
       <img
         className="country__flag"
         src={countryFlag}
-        alt={`${country} flag`}
+        alt={countryFlag === "N/A" ? countryFlag : `${country} flag`}
       />
       <div
         className={`country__description ${
