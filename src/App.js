@@ -62,6 +62,10 @@ export default function App() {
     handleCountryClick(borderCountryObj);
   }
 
+  function handleClearFilterClick() {
+    setFilteredRegion(null);
+  }
+
   // FUNCTIONS
   async function fetchCountries(url) {
     try {
@@ -166,6 +170,7 @@ export default function App() {
                 countryName={countryName}
                 setCountryName={setCountryName}
                 isFilterDisplayed={isFilterDisplayed}
+                onClearFilterClick={handleClearFilterClick}
               />
               {isLoading && <Spinner isLightTheme={isLightTheme} />}
               {!isLoading && error && (
@@ -282,6 +287,7 @@ function SearchFilter({
   countryName,
   setCountryName,
   isFilterDisplayed,
+  onClearFilterClick,
 }) {
   return (
     <div className="search-filter">
@@ -295,6 +301,7 @@ function SearchFilter({
           isLightTheme={isLightTheme}
           filteredRegion={filteredRegion}
           onRegionClick={onRegionClick}
+          onClearFilterClick={onClearFilterClick}
         />
       )}
     </div>
@@ -330,7 +337,12 @@ function Search({ isLightTheme, countryName, setCountryName }) {
   );
 }
 
-function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
+function Filter({
+  isLightTheme,
+  filteredRegion,
+  onRegionClick,
+  onClearFilterClick,
+}) {
   // STATE
   const [isRegionsDisplayed, setIsRegionsDisplayed] = useState(false);
 
@@ -345,6 +357,12 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
   function handleRegionClick(region) {
     onRegionClick(region);
     setIsRegionsDisplayed(false);
+  }
+
+  function handleClearFilterClick() {
+    // Hide the filtered regions and set 'filteredRegion' state back to its defualt value
+    setIsRegionsDisplayed(false);
+    onClearFilterClick();
   }
 
   // EFFECTS
@@ -410,6 +428,15 @@ function Filter({ isLightTheme, filteredRegion, onRegionClick }) {
               {region}
             </li>
           ))}
+          {filteredRegion && (
+            <button
+              className="filter__clear-btn"
+              type="button"
+              onClick={handleClearFilterClick}
+            >
+              Clear filter
+            </button>
+          )}
         </ul>
       )}
     </div>

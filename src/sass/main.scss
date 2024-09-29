@@ -57,6 +57,14 @@ body,
   }
 }
 
+// *************** MIXINS ***************
+@mixin filter-text-styles {
+  color: $color-cinder;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  transition: color 0.3s;
+}
+
 // ******** MOBILE LAYOUTS ********
 
 // ********* 375px LAYOUT *********
@@ -226,10 +234,16 @@ body,
   }
 
   &__option {
-    color: $color-cinder;
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    transition: color 0.3s;
+    @include filter-text-styles;
+  }
+
+  &__clear-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-weight: $fw-extra-bold;
+    @include filter-text-styles;
   }
 }
 

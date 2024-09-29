@@ -184,6 +184,17 @@ body,
   line-height: 1.6rem;
   transition: color 0.3s;
 }
+.filter__clear-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-weight: 800;
+  color: #111517;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  transition: color 0.3s;
+}
 
 .countries {
   display: flex;
