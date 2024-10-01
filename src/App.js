@@ -36,13 +36,13 @@ export default function App() {
     setFilteredRegion(region);
   }
 
-  function handleCountryClick(country) {
+  function handleCountryClick(countryObj) {
     // Update 'selectedCountry'
-    setSelectedCountry(country);
+    setSelectedCountry(countryObj);
 
-    // Check if the country has a cca3 property before navigating
-    if (country.cca3) {
-      navigate(`/country/${country.cca3}`);
+    // Check if the countryObj has a cca3 property before navigating
+    if (countryObj.cca3) {
+      navigate(`/country/${countryObj.cca3}`);
     }
   }
 
@@ -355,12 +355,13 @@ function Filter({
   }
 
   function handleRegionClick(region) {
+    // Set the 'filteredRegion' to the region that was clicked and hide the filter options
     onRegionClick(region);
     setIsRegionsDisplayed(false);
   }
 
   function handleClearFilterClick() {
-    // Hide the filtered regions and set 'filteredRegion' state back to its defualt value
+    // Hide the filter options and set 'filteredRegion' state back to its defualt value
     setIsRegionsDisplayed(false);
     onClearFilterClick();
   }
@@ -430,7 +431,9 @@ function Filter({
           ))}
           {filteredRegion && (
             <button
-              className="filter__clear-btn"
+              className={`filter__clear-btn ${
+                !isLightTheme ? "white-color" : ""
+              }`}
               type="button"
               onClick={handleClearFilterClick}
             >
