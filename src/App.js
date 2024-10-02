@@ -34,6 +34,13 @@ export default function App() {
   function handleRegionClick(region) {
     if (region === filteredRegion) return;
     setFilteredRegion(region);
+
+    // Update the 'countries' state with the 'filteredRegionsData'
+    const filteredRegionsData = countriesData.current.filter(
+      (country) => country.region === region
+    );
+
+    setCountries(filteredRegionsData);
   }
 
   function handleCountryClick(countryObj) {
@@ -63,15 +70,17 @@ export default function App() {
   }
 
   function handleClearFilterClick() {
+    // Set 'filteredRegion' back to its default value and display all countries
     setFilteredRegion(null);
+    setCountries(countriesData.current);
   }
 
   // FUNCTIONS
-  async function fetchCountries(url) {
+  async function fetchCountries() {
     try {
       setIsLoading(true);
 
-      const res = await fetch(url);
+      const res = await fetch("https://restcountries.com/v3.1/all");
 
       if (!res.ok) {
         throw new Error("🚨 Something went wrong fetching countries 🚨");
@@ -90,17 +99,10 @@ export default function App() {
   }
 
   // EFFECTS
-  useEffect(
-    function () {
-      // Fetch all countries if no region is selected, otherwise fetch countries by region
-      const url = filteredRegion
-        ? `https://restcountries.com/v3.1/region/${filteredRegion}`
-        : `https://restcountries.com/v3.1/all`;
-
-      fetchCountries(url);
-    },
-    [filteredRegion]
-  );
+  useEffect(function () {
+    // Fetch all countries when the page first loads
+    fetchCountries();
+  }, []);
 
   useEffect(
     function () {
@@ -152,6 +154,15 @@ export default function App() {
     },
     [countryName]
   );
+
+  useEffect(function () {
+    // Detect on initial load if the user prefers light or dark mode based on their system's preference
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (prefersDarkMode) handleThemeChange();
+  }, []);
 
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
@@ -361,7 +372,7 @@ function Filter({
   }
 
   function handleClearFilterClick() {
-    // Hide the filter options and set 'filteredRegion' state back to its defualt value
+    // Hide the filter options, set 'filteredRegion' state back to its default value, and display all countries
     setIsRegionsDisplayed(false);
     onClearFilterClick();
   }
