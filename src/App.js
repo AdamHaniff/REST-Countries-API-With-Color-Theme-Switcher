@@ -1,4 +1,11 @@
-import { useState, useEffect, useRef, createContext, useContext } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  createContext,
+  useContext,
+  useCallback,
+} from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import countryCodes from "./data.js/countryCodes";
 
@@ -27,9 +34,16 @@ export default function App() {
   const countriesData = useRef([]);
 
   // HANDLER FUNCTIONS
-  function handleThemeChange() {
-    setIsLightTheme((colorTheme) => !colorTheme);
-  }
+  const handleThemeChange = useCallback(() => {
+    setIsLightTheme((lightTheme) => {
+      const newTheme = !lightTheme;
+      const colorTheme = newTheme ? "light" : "dark";
+
+      // Save user's color theme preference in localStorage and update 'isLightTheme' state to 'newTheme'
+      localStorage.setItem("theme", colorTheme);
+      return newTheme;
+    });
+  }, []);
 
   function handleRegionClick(region) {
     if (region === filteredRegion) return;
@@ -155,14 +169,23 @@ export default function App() {
     [countryName]
   );
 
-  useEffect(function () {
-    // Detect on initial load if the user prefers light or dark mode based on their system's preference
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+  useEffect(
+    function () {
+      // On initial load, check if there is a stored theme
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme) {
+        setIsLightTheme(storedTheme === "light");
+      } else {
+        // Check the user's system preference to see if they prefer dark mode
+        const prefersDarkMode = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
 
-    if (prefersDarkMode) handleThemeChange();
-  }, []);
+        if (prefersDarkMode) handleThemeChange();
+      }
+    },
+    [handleThemeChange]
+  );
 
   return (
     <div className={`app ${!isLightTheme ? "ebony-clay-bg" : ""}`}>
