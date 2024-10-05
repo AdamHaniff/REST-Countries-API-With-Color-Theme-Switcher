@@ -92,6 +92,7 @@ body,
   gap: 2.6rem;
   padding: 1.6rem 3.2rem;
   transition: background 0.3s;
+  max-width: 48rem;
 }
 .search__icon {
   display: block;
@@ -370,6 +371,15 @@ body,
   transition: background 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
+@media only screen and (min-width: 29.6875em) {
+  .details__overview-container {
+    flex-direction: row;
+    gap: 4rem;
+  }
+  .details__overview-container > .details__overview:nth-child(2) {
+    margin-top: 4.6rem;
+  }
+}
 .dark-slate-grey-bg {
   background: #2b3844;
 }
