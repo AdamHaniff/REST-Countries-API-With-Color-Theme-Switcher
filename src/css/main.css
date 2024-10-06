@@ -156,13 +156,15 @@ body,
 }
 .filter__label {
   color: #111517;
-  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
   line-height: 2rem;
   transition: color 0.3s;
 }
 .filter__arrow-icon {
   display: block;
   transition: transform 0.3s;
+  width: clamp(1rem, 1rem + 2 * (100vw - 37.5rem) / 1065, 1.2rem);
+  height: clamp(1rem, 1rem + 2 * (100vw - 37.5rem) / 1065, 1.2rem);
 }
 .filter__arrow-icon-path {
   fill: #000;
@@ -185,8 +187,8 @@ body,
 }
 .filter__option {
   color: #111517;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
+  line-height: clamp(1.6rem, 1.6rem + 4 * (100vw - 37.5rem) / 1065, 2rem);
   transition: color 0.3s;
 }
 .filter__clear-btn {
@@ -196,8 +198,8 @@ body,
   font-family: inherit;
   font-weight: 800;
   color: #111517;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
+  line-height: clamp(1.6rem, 1.6rem + 4 * (100vw - 37.5rem) / 1065, 2rem);
   transition: color 0.3s;
 }
 
@@ -388,6 +390,30 @@ body,
   .countries {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width: 48em) {
+  .header {
+    padding: 2.4rem 8.1rem;
+  }
+  .search-filter {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .search-filter-countries {
+    padding: 4.8rem 8.1rem 4.5rem;
+  }
+  .search {
+    flex: 1;
+    padding: 1.7rem 3.2rem;
+    gap: 2.4rem;
+  }
+  .filter__header {
+    padding: 1.8rem 2.2rem 1.8rem 2.4rem;
+  }
+  .filter__options {
+    top: 6rem;
   }
 }
 .dark-slate-grey-bg {

@@ -23,6 +23,12 @@ $fw-semi-bold: 600;
 $fw-extra-bold: 800;
 
 // ************** VARIABLES **************
+$responsive-10px-12px: clamp(
+  1rem,
+  calc(1rem + (12 - 10) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.2rem
+);
+
 $responsive-12px-14px: clamp(
   1.2rem,
   calc(1.2rem + (14 - 12) * ((100vw - 37.5rem) / (1440 - 375))),
@@ -91,8 +97,8 @@ body,
 // *************** MIXINS ***************
 @mixin filter-text-styles {
   color: $color-cinder;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  font-size: $responsive-12px-14px;
+  line-height: $responsive-16px-20px;
   transition: color 0.3s;
 }
 
@@ -238,7 +244,7 @@ body,
 
   &__label {
     color: $color-cinder;
-    font-size: 1.2rem;
+    font-size: $responsive-12px-14px;
     line-height: 2rem;
     transition: color 0.3s;
   }
@@ -246,6 +252,8 @@ body,
   &__arrow-icon {
     display: block;
     transition: transform 0.3s;
+    width: $responsive-10px-12px;
+    height: $responsive-10px-12px;
 
     &-path {
       fill: $color-black;
@@ -512,6 +520,39 @@ body,
 
 // ************ 768px LAYOUT ************
 @media only screen and (min-width: 48em) {
+  // ************** HEADER **************
+  .header {
+    padding: 2.4rem 8.1rem;
+  }
+
+  // *********** SEARCH-FILTER **********
+  .search-filter {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &-countries {
+      padding: 4.8rem 8.1rem 4.5rem;
+    }
+  }
+
+  // ************** SEARCH **************
+  .search {
+    flex: 1;
+    padding: 1.7rem 3.2rem;
+    gap: 2.4rem;
+  }
+
+  // ************** FILTER **************
+  .filter {
+    &__header {
+      padding: 1.8rem 2.2rem 1.8rem 2.4rem;
+    }
+
+    &__options {
+      top: 6rem;
+    }
+  }
 }
 
 // ******** DYNAMIC STYLES ********
