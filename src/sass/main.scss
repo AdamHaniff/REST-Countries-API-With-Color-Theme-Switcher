@@ -496,6 +496,15 @@ body,
 @media only screen and (min-width: 35.9375em) {
   // ************* DETAILS *************
   .details {
+    &__back-btn-container {
+      width: 51.9rem;
+      margin: 0 auto;
+    }
+
+    &__flag-overview {
+      align-items: center;
+    }
+
     &__overview-container {
       flex-direction: row;
       gap: 4rem;
