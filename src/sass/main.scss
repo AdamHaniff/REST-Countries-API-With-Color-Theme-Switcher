@@ -41,6 +41,12 @@ $responsive-12px-16px: clamp(
   1.6rem
 );
 
+$responsive-14px-16px: clamp(
+  1.4rem,
+  calc(1.4rem + (16 - 14) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.6rem
+);
+
 $responsive-14px-24px: clamp(
   1.4rem,
   calc(1.4rem + (24 - 14) * ((100vw - 37.5rem) / (1440 - 375))),
@@ -57,6 +63,30 @@ $responsive-16px-20px: clamp(
   1.6rem,
   calc(1.6rem + (20 - 16) * ((100vw - 37.5rem) / (1440 - 375))),
   2rem
+);
+
+$responsive-18px-20px: clamp(
+  1.8rem,
+  calc(1.8rem + (20 - 18) * ((100vw - 37.5rem) / (1440 - 375))),
+  2rem
+);
+
+$responsive-22px-32px: clamp(
+  2.2rem,
+  calc(2.2rem + (32 - 22) * ((100vw - 37.5rem) / (1440 - 375))),
+  3.2rem
+);
+
+$responsive-250px-310px: clamp(
+  25rem,
+  calc(25rem + (310 - 250) * ((100vw - 37.5rem) / (1440 - 375))),
+  31rem
+);
+
+$responsive-320px-430px: clamp(
+  32rem,
+  calc(32rem + (430 - 320) * ((100vw - 37.5rem) / (1440 - 375))),
+  43rem
 );
 
 // ************* BASE *************
@@ -386,6 +416,8 @@ body,
 
   &__back-arrow-icon {
     display: block;
+    width: $responsive-18px-20px;
+    height: $responsive-18px-20px;
 
     &-path {
       fill: $color-cinder;
@@ -396,7 +428,7 @@ body,
   &__back-btn-label {
     color: $color-cinder;
     font-family: $font-nunito-sans;
-    font-size: 1.4rem;
+    font-size: $responsive-14px-16px;
     font-weight: $fw-light;
     line-height: 2rem;
     transition: color 0.3;
@@ -411,8 +443,8 @@ body,
 
   &__flag {
     display: block;
-    max-width: 32rem;
-    height: 25rem;
+    max-width: $responsive-320px-430px;
+    height: $responsive-250px-310px;
     border-radius: 0.5rem;
   }
 
@@ -436,7 +468,7 @@ body,
 
   &__name {
     color: $color-cinder;
-    font-size: 2.2rem;
+    font-size: $responsive-22px-32px;
     font-weight: $fw-extra-bold;
     transition: color 0.3s;
   }
@@ -444,7 +476,7 @@ body,
   &__label-value {
     display: flex;
     color: $color-cinder;
-    font-size: 1.4rem;
+    font-size: $responsive-14px-16px;
     font-weight: $fw-semi-bold;
     line-height: 3.2rem;
     transition: color 0.3s;
@@ -486,7 +518,7 @@ body,
     justify-content: center;
     align-items: center;
     color: $color-cinder;
-    font-size: 1.2rem;
+    font-size: $responsive-12px-14px;
     font-weight: $fw-light;
     transition: background 0.3s, box-shadow 0.3s, color 0.3s;
   }

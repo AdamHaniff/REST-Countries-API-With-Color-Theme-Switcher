@@ -286,6 +286,8 @@ body,
 }
 .details__back-arrow-icon {
   display: block;
+  width: clamp(1.8rem, 1.8rem + 2 * (100vw - 37.5rem) / 1065, 2rem);
+  height: clamp(1.8rem, 1.8rem + 2 * (100vw - 37.5rem) / 1065, 2rem);
 }
 .details__back-arrow-icon-path {
   fill: #111517;
@@ -294,7 +296,7 @@ body,
 .details__back-btn-label {
   color: #111517;
   font-family: "Nunito Sans", sans-serif;
-  font-size: 1.4rem;
+  font-size: clamp(1.4rem, 1.4rem + 2 * (100vw - 37.5rem) / 1065, 1.6rem);
   font-weight: 300;
   line-height: 2rem;
   transition: color 0.3;
@@ -307,8 +309,8 @@ body,
 }
 .details__flag {
   display: block;
-  max-width: 32rem;
-  height: 25rem;
+  max-width: clamp(32rem, 32rem + 110 * (100vw - 37.5rem) / 1065, 43rem);
+  height: clamp(25rem, 25rem + 60 * (100vw - 37.5rem) / 1065, 31rem);
   border-radius: 0.5rem;
 }
 .details__overview-border {
@@ -328,14 +330,14 @@ body,
 }
 .details__name {
   color: #111517;
-  font-size: 2.2rem;
+  font-size: clamp(2.2rem, 2.2rem + 10 * (100vw - 37.5rem) / 1065, 3.2rem);
   font-weight: 800;
   transition: color 0.3s;
 }
 .details__label-value {
   display: flex;
   color: #111517;
-  font-size: 1.4rem;
+  font-size: clamp(1.4rem, 1.4rem + 2 * (100vw - 37.5rem) / 1065, 1.6rem);
   font-weight: 600;
   line-height: 3.2rem;
   transition: color 0.3s;
@@ -372,7 +374,7 @@ body,
   justify-content: center;
   align-items: center;
   color: #111517;
-  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
   font-weight: 300;
   transition: background 0.3s, box-shadow 0.3s, color 0.3s;
 }
