@@ -403,15 +403,16 @@ body,
 }
 @media only screen and (min-width: 48em) {
   .header {
-    padding: 2.4rem 8.1rem;
+    padding: 2.4rem 8rem;
   }
   .search-filter {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: initial;
   }
   .search-filter-countries {
-    padding: 4.8rem 8.1rem 4.5rem;
+    padding: 4.8rem 8rem 4.5rem;
     gap: 4.8rem;
   }
   .search {
@@ -433,6 +434,38 @@ body,
 @media only screen and (min-width: 65.625em) {
   .countries {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 90em) {
+  .countries {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7.5rem;
+  }
+  .details__back-btn-container {
+    width: initial;
+    margin: initial;
+  }
+  .details__flag-overview {
+    flex-direction: row;
+    gap: 12.29rem;
+  }
+  .details__overview-border {
+    gap: 6.8rem;
+  }
+  .details__overview-container {
+    gap: 14.1rem;
+  }
+  .details__overview-container > .details__overview:nth-child(2) {
+    margin-top: 6.7rem;
+  }
+  .details__name-overview {
+    gap: 2.3rem;
+  }
+  .details__name {
+    font-size: 3.2rem;
+  }
+  .border-countries {
+    flex-direction: row;
   }
 }
 .dark-slate-grey-bg {

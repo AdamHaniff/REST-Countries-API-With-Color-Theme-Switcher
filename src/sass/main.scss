@@ -563,7 +563,7 @@ body,
 @media only screen and (min-width: 48em) {
   // ************** HEADER **************
   .header {
-    padding: 2.4rem 8.1rem;
+    padding: 2.4rem 8rem;
   }
 
   // *********** SEARCH-FILTER **********
@@ -571,9 +571,10 @@ body,
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: initial;
 
     &-countries {
-      padding: 4.8rem 8.1rem 4.5rem;
+      padding: 4.8rem 8rem 4.5rem;
       gap: 4.8rem;
     }
   }
@@ -615,6 +616,49 @@ body,
 
 // ************ 1440px LAYOUT ************
 @media only screen and (min-width: 90em) {
+  // ************* COUNTRIES *************
+  .countries {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7.5rem;
+  }
+
+  // ************** DETAILS **************
+  .details {
+    &__back-btn-container {
+      width: initial;
+      margin: initial;
+    }
+
+    &__flag-overview {
+      flex-direction: row;
+      gap: 12.29rem;
+    }
+
+    &__overview-border {
+      gap: 6.8rem;
+    }
+
+    &__overview-container {
+      gap: 14.1rem;
+
+      & > .details__overview:nth-child(2) {
+        margin-top: 6.7rem;
+      }
+    }
+
+    &__name-overview {
+      gap: 2.3rem;
+    }
+
+    &__name {
+      font-size: 3.2rem;
+    }
+  }
+
+  // ********** BORDER-COUNTRIES **********
+  .border-countries {
+    flex-direction: row;
+  }
 }
 
 // ******** DYNAMIC STYLES ********
