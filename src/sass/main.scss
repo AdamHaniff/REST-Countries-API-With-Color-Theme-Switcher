@@ -77,16 +77,22 @@ $responsive-22px-32px: clamp(
   3.2rem
 );
 
-$responsive-250px-310px: clamp(
+$responsive-250px-401px: clamp(
   25rem,
-  calc(25rem + (310 - 250) * ((100vw - 37.5rem) / (1440 - 375))),
-  31rem
+  calc(25rem + (401 - 250) * ((100vw - 37.5rem) / (1440 - 375))),
+  40.1rem
 );
 
-$responsive-320px-430px: clamp(
+$responsive-320px-560px: clamp(
   32rem,
-  calc(32rem + (430 - 320) * ((100vw - 37.5rem) / (1440 - 375))),
-  43rem
+  calc(32rem + (560 - 320) * ((100vw - 37.5rem) / (1440 - 375))),
+  56rem
+);
+
+$responsive-450px-495px: clamp(
+  45rem,
+  calc(45rem + (495 - 450) * ((100vw - 60rem) / (1439 - 600))),
+  49.5rem
 );
 
 // ************* BASE *************
@@ -443,8 +449,8 @@ body,
 
   &__flag {
     display: block;
-    max-width: $responsive-320px-430px;
-    height: $responsive-250px-310px;
+    max-width: $responsive-320px-560px;
+    height: $responsive-250px-401px;
     border-radius: 0.5rem;
   }
 
@@ -529,7 +535,7 @@ body,
   // ************* DETAILS *************
   .details {
     &__back-btn-container {
-      width: 51.9rem;
+      width: $responsive-450px-495px;
       margin: 0 auto;
     }
 
