@@ -567,10 +567,10 @@ function CountryDetails({
   const formattedCurrencies = Object.values(currencies)
     .map((currency) => currency.name)
     .join(", ");
-  const formattedLanguages = Object.values(languages).join(", ");
-  const formattedBorderCountries = borderCountries.map(
-    (country) => countryCodes[country]
-  );
+  const formattedLanguages = Object.values(languages).slice(0, 3).join(", ");
+  const formattedBorderCountries = borderCountries
+    .map((country) => countryCodes[country])
+    .slice(0, 3);
   const hasBorders = selectedCountry?.hasOwnProperty("borders") || false;
   const isLightTheme = useContext(ThemeContext);
 

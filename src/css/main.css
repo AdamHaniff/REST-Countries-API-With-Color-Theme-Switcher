@@ -426,6 +426,8 @@ body,
   }
   .details {
     padding: 8rem;
+  }
+  .details__container {
     gap: 8rem;
   }
 }
@@ -439,9 +441,16 @@ body,
     grid-template-columns: repeat(4, 1fr);
     gap: 7.5rem;
   }
+  .details {
+    justify-content: initial;
+  }
+  .details__container {
+    width: 100%;
+  }
   .details__flag-overview {
     flex-direction: row;
-    gap: 12.29rem;
+    align-items: center;
+    gap: 12.029rem;
   }
   .details__overview-border {
     gap: 6.8rem;
