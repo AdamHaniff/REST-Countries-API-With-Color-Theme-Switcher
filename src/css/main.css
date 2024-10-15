@@ -347,8 +347,12 @@ body,
   line-height: 3.2rem;
   transition: color 0.3s;
 }
+.details__label {
+  white-space: nowrap;
+}
 .details__value {
   font-weight: 300;
+  white-space: nowrap;
 }
 
 .border-countries {
@@ -441,16 +445,13 @@ body,
     grid-template-columns: repeat(4, 1fr);
     gap: 7.5rem;
   }
-  .details {
-    justify-content: initial;
-  }
-  .details__container {
-    width: 100%;
-  }
   .details__flag-overview {
     flex-direction: row;
     align-items: center;
     gap: 12.029rem;
+  }
+  .details__flag {
+    width: 56rem;
   }
   .details__overview-border {
     gap: 6.8rem;
