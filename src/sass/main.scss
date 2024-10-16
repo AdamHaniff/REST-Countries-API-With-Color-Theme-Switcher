@@ -153,10 +153,13 @@ body,
   background: $color-white;
   box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.06);
   padding: 3rem 1.6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   transition: background 0.3s;
+
+  &__title-switcher {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &__title {
     color: $color-cinder;
@@ -627,6 +630,25 @@ body,
 
 // ************ 1440px LAYOUT ************
 @media only screen and (min-width: 90em) {
+  // *************** HEADER ***************
+  .header {
+    display: flex;
+    justify-content: center;
+    padding: 2.4rem 7rem;
+
+    &__title-switcher {
+      max-width: 128.364rem;
+      width: 100%;
+    }
+  }
+
+  // ************ SEARCH-FILTER ************
+  .search-filter {
+    &-countries {
+      padding: 4.8rem 7rem 4.5rem;
+    }
+  }
+
   // ************* COUNTRIES *************
   .countries {
     grid-template-columns: repeat(4, 1fr);

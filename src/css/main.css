@@ -39,10 +39,12 @@ body,
   background: #fff;
   box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.06);
   padding: 3rem 1.6rem;
+  transition: background 0.3s;
+}
+.header__title-switcher {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s;
 }
 .header__title {
   color: #111517;
@@ -441,6 +443,18 @@ body,
   }
 }
 @media only screen and (min-width: 90em) {
+  .header {
+    display: flex;
+    justify-content: center;
+    padding: 2.4rem 7rem;
+  }
+  .header__title-switcher {
+    max-width: 128.364rem;
+    width: 100%;
+  }
+  .search-filter-countries {
+    padding: 4.8rem 7rem 4.5rem;
+  }
   .countries {
     grid-template-columns: repeat(4, 1fr);
     gap: 7.5rem;
