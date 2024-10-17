@@ -413,7 +413,6 @@ body,
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: initial;
   }
   .search-filter-countries {
     padding: 4.8rem 8rem 4.5rem;
@@ -449,15 +448,20 @@ body,
     padding: 2.4rem 7rem;
   }
   .header__title-switcher {
-    max-width: 128.364rem;
+    max-width: 130rem;
     width: 100%;
   }
   .search-filter-countries {
     padding: 4.8rem 7rem 4.5rem;
+    max-width: 142.364rem;
+    margin: 0 auto;
   }
   .countries {
     grid-template-columns: repeat(4, 1fr);
     gap: 7.5rem;
+  }
+  .details {
+    padding: 8rem 7rem;
   }
   .details__flag-overview {
     flex-direction: row;
