@@ -107,6 +107,7 @@ $responsive-450px-495px: clamp(
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -659,6 +660,9 @@ body,
   // ************** DETAILS **************
   .details {
     padding: 8rem 7rem;
+    max-width: 142.364rem;
+    margin: 0 auto;
+    justify-content: initial;
 
     &__flag-overview {
       flex-direction: row;

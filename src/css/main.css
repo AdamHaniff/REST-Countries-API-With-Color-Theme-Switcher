@@ -9,6 +9,7 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -462,6 +463,9 @@ body,
   }
   .details {
     padding: 8rem 7rem;
+    max-width: 142.364rem;
+    margin: 0 auto;
+    justify-content: initial;
   }
   .details__flag-overview {
     flex-direction: row;
