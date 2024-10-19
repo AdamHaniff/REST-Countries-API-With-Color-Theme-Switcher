@@ -262,7 +262,7 @@ body,
 }
 
 .error-message {
-  font-size: 1.4rem;
+  font-size: clamp(1.4rem, 1.4rem + 10 * (100vw - 37.5rem) / 1065, 2.4rem);
   color: #111517;
   font-weight: 800;
 }
@@ -391,6 +391,11 @@ body,
   transition: background 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
+@media only screen and (max-width: 23.4375em) {
+  .error-message {
+    font-size: 1.29rem;
+  }
+}
 @media only screen and (min-width: 37.5em) {
   .details__overview-container {
     flex-direction: row;
@@ -449,7 +454,7 @@ body,
     padding: 2.4rem 7rem;
   }
   .header__title-switcher {
-    max-width: 130rem;
+    max-width: 128.364rem;
     width: 100%;
   }
   .search-filter-countries {

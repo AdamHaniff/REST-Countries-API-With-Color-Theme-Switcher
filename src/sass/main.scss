@@ -397,7 +397,7 @@ body,
 
 // ********* ERROR-MESSAGE *********
 .error-message {
-  font-size: 1.4rem;
+  font-size: $responsive-14px-24px;
   color: $color-cinder;
   font-weight: $fw-extra-bold;
 }
@@ -545,6 +545,14 @@ body,
   }
 }
 
+// ******** 320px - 374px LAYOUT ********
+@media only screen and (max-width: 23.4375em) {
+  // ********* ERROR-MESSAGE *********
+  .error-message {
+    font-size: 1.29rem;
+  }
+}
+
 // ************ 600px LAYOUT ************
 @media only screen and (min-width: 37.5em) {
   // ************* DETAILS *************
@@ -637,7 +645,7 @@ body,
     padding: 2.4rem 7rem;
 
     &__title-switcher {
-      max-width: 130rem;
+      max-width: 128.364rem;
       width: 100%;
     }
   }
