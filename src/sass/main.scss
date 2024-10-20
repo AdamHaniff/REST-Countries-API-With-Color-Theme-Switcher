@@ -77,6 +77,12 @@ $responsive-22px-32px: clamp(
   3.2rem
 );
 
+$responsive-40px-60px: clamp(
+  4rem,
+  calc(4rem + (60 - 40) * ((100vw - 37.5rem) / (1440 - 375))),
+  6rem
+);
+
 $responsive-250px-401px: clamp(
   25rem,
   calc(25rem + (401 - 250) * ((100vw - 37.5rem) / (1440 - 375))),
@@ -179,6 +185,7 @@ body,
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    cursor: pointer;
   }
 
   &__icon {
@@ -387,8 +394,8 @@ body,
 
 // ************ SPINNER ************
 .spinner {
-  width: 4rem;
-  height: 4rem;
+  width: $responsive-40px-60px;
+  height: $responsive-40px-60px;
   border: 0.5rem solid $color-cinder;
   border-top: 0.5rem solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
@@ -706,6 +713,22 @@ body,
   // ********** BORDER-COUNTRIES **********
   .border-countries {
     flex-direction: row;
+  }
+}
+
+// ********* DESKTOP HOVER STATES *********
+
+// *********** 992px MEDIA QUERY ***********
+@media only screen and (min-width: 62em) {
+  // *************** SEARCH ***************
+  .search {
+    &__input:hover {
+      cursor: pointer;
+    }
+
+    &__input:focus {
+      cursor: text;
+    }
   }
 }
 

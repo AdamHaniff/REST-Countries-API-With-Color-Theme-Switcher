@@ -61,6 +61,7 @@ body,
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  cursor: pointer;
 }
 .theme-switcher__icon {
   display: block;
@@ -253,8 +254,8 @@ body,
 }
 
 .spinner {
-  width: 4rem;
-  height: 4rem;
+  width: clamp(4rem, 4rem + 20 * (100vw - 37.5rem) / 1065, 6rem);
+  height: clamp(4rem, 4rem + 20 * (100vw - 37.5rem) / 1065, 6rem);
   border: 0.5rem solid #111517;
   border-top: 0.5rem solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
@@ -497,6 +498,14 @@ body,
   }
   .border-countries {
     flex-direction: row;
+  }
+}
+@media only screen and (min-width: 62em) {
+  .search__input:hover {
+    cursor: pointer;
+  }
+  .search__input:focus {
+    cursor: text;
   }
 }
 .dark-slate-grey-bg {
