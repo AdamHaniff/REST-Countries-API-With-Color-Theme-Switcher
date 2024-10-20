@@ -10,6 +10,8 @@ $color-ebony-clay: #202c36;
 $color-mountain-mist: #979797;
 $color-nobel: #b2b2b2;
 $color-black: #000;
+$color-davy-grey: #4c5358;
+$color-rock-blue: #9bb3c5;
 
 // ********** BOX-SHADOWS **********
 $box-shadow-5-percent: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
@@ -287,6 +289,7 @@ body,
     align-items: center;
     padding: 1.4rem 1.9rem 1.4rem 2.4rem;
     transition: background 0.3s;
+    cursor: pointer;
   }
 
   &__label {
@@ -326,6 +329,7 @@ body,
 
   &__option {
     @include filter-text-styles;
+    cursor: pointer;
   }
 
   &__clear-btn {
@@ -335,6 +339,7 @@ body,
     font-family: inherit;
     font-weight: $fw-extra-bold;
     @include filter-text-styles;
+    cursor: pointer;
   }
 }
 
@@ -351,6 +356,7 @@ body,
   border-radius: 0.5rem;
   box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
   overflow: hidden;
+  cursor: pointer;
 
   &__flag {
     width: 100%;
@@ -434,6 +440,7 @@ body,
     justify-content: center;
     gap: 0.8rem;
     transition: background 0.3s;
+    cursor: pointer;
   }
 
   &__back-arrow-icon {
@@ -549,6 +556,7 @@ body,
     font-size: $responsive-12px-14px;
     font-weight: $fw-light;
     transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+    cursor: pointer;
   }
 }
 
@@ -728,6 +736,21 @@ body,
 
     &__input:focus {
       cursor: text;
+    }
+  }
+
+  // *************** FILTER ***************
+  .filter {
+    &__option:hover {
+      font-weight: $fw-extra-bold;
+    }
+
+    &__clear-btn:hover {
+      color: $color-davy-grey;
+    }
+
+    &__clear-btn.white-color:hover {
+      color: $color-rock-blue;
     }
   }
 }

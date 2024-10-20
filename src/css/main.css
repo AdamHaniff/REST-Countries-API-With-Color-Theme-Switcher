@@ -157,6 +157,7 @@ body,
   align-items: center;
   padding: 1.4rem 1.9rem 1.4rem 2.4rem;
   transition: background 0.3s;
+  cursor: pointer;
 }
 .filter__label {
   color: #111517;
@@ -194,6 +195,7 @@ body,
   font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
   line-height: clamp(1.6rem, 1.6rem + 4 * (100vw - 37.5rem) / 1065, 2rem);
   transition: color 0.3s;
+  cursor: pointer;
 }
 .filter__clear-btn {
   margin-left: auto;
@@ -205,6 +207,7 @@ body,
   font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
   line-height: clamp(1.6rem, 1.6rem + 4 * (100vw - 37.5rem) / 1065, 2rem);
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .countries {
@@ -218,6 +221,7 @@ body,
   border-radius: 0.5rem;
   box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
   overflow: hidden;
+  cursor: pointer;
 }
 .country__flag {
   width: 100%;
@@ -291,6 +295,7 @@ body,
   justify-content: center;
   gap: 0.8rem;
   transition: background 0.3s;
+  cursor: pointer;
 }
 .details__back-arrow-icon {
   display: block;
@@ -390,6 +395,7 @@ body,
   font-size: clamp(1.2rem, 1.2rem + 2 * (100vw - 37.5rem) / 1065, 1.4rem);
   font-weight: 300;
   transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 23.4375em) {
@@ -506,6 +512,15 @@ body,
   }
   .search__input:focus {
     cursor: text;
+  }
+  .filter__option:hover {
+    font-weight: 800;
+  }
+  .filter__clear-btn:hover {
+    color: #4c5358;
+  }
+  .filter__clear-btn.white-color:hover {
+    color: #9bb3c5;
   }
 }
 .dark-slate-grey-bg {
