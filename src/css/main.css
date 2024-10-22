@@ -222,6 +222,7 @@ body,
   box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .country__flag {
   width: 100%;
@@ -521,6 +522,22 @@ body,
   }
   .filter__clear-btn.white-color:hover {
     color: #9bb3c5;
+  }
+  .country:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 1.4rem 0.4rem rgba(0, 0, 0, 0.1);
+  }
+  .details__back-btn:hover {
+    background: #e0e0e0;
+  }
+  .details__back-btn.dark-slate-grey-bg:hover {
+    background: #3c4a54;
+  }
+  .border-countries__country:hover {
+    background: #e0e0e0;
+  }
+  .border-countries__country.dark-slate-grey-bg:hover {
+    background: #3c4a54;
   }
 }
 .dark-slate-grey-bg {

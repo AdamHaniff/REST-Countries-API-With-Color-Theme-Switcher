@@ -12,6 +12,8 @@ $color-nobel: #b2b2b2;
 $color-black: #000;
 $color-davy-grey: #4c5358;
 $color-rock-blue: #9bb3c5;
+$color-lavender-pinocchio: #e0e0e0;
+$color-limed-spruce: #3c4a54;
 
 // ********** BOX-SHADOWS **********
 $box-shadow-5-percent: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
@@ -357,6 +359,7 @@ body,
   box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &__flag {
     width: 100%;
@@ -751,6 +754,34 @@ body,
 
     &__clear-btn.white-color:hover {
       color: $color-rock-blue;
+    }
+  }
+
+  // *************** COUNTRY ***************
+  .country:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 1.4rem 0.4rem rgba(0, 0, 0, 0.1);
+  }
+
+  // *************** DETAILS ***************
+  .details {
+    &__back-btn:hover {
+      background: $color-lavender-pinocchio;
+    }
+
+    &__back-btn.dark-slate-grey-bg:hover {
+      background: $color-limed-spruce;
+    }
+  }
+
+  // ********** BORDER-COUNTRIES **********
+  .border-countries {
+    &__country:hover {
+      background: $color-lavender-pinocchio;
+    }
+
+    &__country.dark-slate-grey-bg:hover {
+      background: $color-limed-spruce;
     }
   }
 }
