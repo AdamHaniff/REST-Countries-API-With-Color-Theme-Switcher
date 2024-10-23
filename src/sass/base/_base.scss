@@ -1,0 +1,25 @@
+// ************* BASE *************
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: $font-nunito-sans;
+}
+
+html,
+body,
+#root,
+.app {
+  min-height: 100vh;
+}

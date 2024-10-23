@@ -1,0 +1,58 @@
+// ********* DESKTOP HOVER STATES *********
+
+// *********** 992px MEDIA QUERY ***********
+@media only screen and (min-width: 62em) {
+  // *************** SEARCH ***************
+  .search {
+    &__input:hover {
+      cursor: pointer;
+    }
+
+    &__input:focus {
+      cursor: text;
+    }
+  }
+
+  // *************** FILTER ***************
+  .filter {
+    &__option:hover {
+      font-weight: $fw-extra-bold;
+    }
+
+    &__clear-btn:hover {
+      color: $color-davy-grey;
+    }
+
+    &__clear-btn.white-color:hover {
+      color: $color-rock-blue;
+    }
+  }
+
+  // *************** COUNTRY ***************
+  .country:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 1.4rem 0.4rem rgba(0, 0, 0, 0.1);
+  }
+
+  // *************** DETAILS ***************
+  .details {
+    &__back-btn:hover {
+      background: $color-lavender-pinocchio;
+    }
+
+    &__back-btn.dark-slate-grey-bg:hover {
+      background: $color-limed-spruce;
+    }
+  }
+
+  // ********** BORDER-COUNTRIES **********
+  .border-countries {
+    &__country:hover {
+      background: $color-lavender-pinocchio;
+    }
+
+    &__country.dark-slate-grey-bg:hover {
+      background: $color-limed-spruce;
+    }
+  }
+}

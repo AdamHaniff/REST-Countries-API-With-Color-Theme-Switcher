@@ -1,0 +1,48 @@
+// *********** TABLET LAYOUTS ***********
+
+// ************ 768px LAYOUT ************
+@media only screen and (min-width: 48em) {
+  // ************** HEADER **************
+  .header {
+    padding: 2.4rem 8rem;
+  }
+
+  // *********** SEARCH-FILTER **********
+  .search-filter {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &-countries {
+      padding: 4.8rem 8rem 4.5rem;
+      gap: 4.8rem;
+    }
+  }
+
+  // ************** SEARCH **************
+  .search {
+    flex: 1;
+    padding: 1.7rem 3.2rem;
+    gap: 2.4rem;
+  }
+
+  // ************** FILTER **************
+  .filter {
+    &__header {
+      padding: 1.8rem 2.2rem 1.8rem 2.4rem;
+    }
+
+    &__options {
+      top: 6rem;
+    }
+  }
+
+  // ************** DETAILS **************
+  .details {
+    padding: 8rem;
+
+    &__container {
+      gap: 8rem;
+    }
+  }
+}

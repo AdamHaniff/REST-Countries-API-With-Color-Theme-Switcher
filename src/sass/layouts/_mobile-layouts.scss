@@ -1,0 +1,445 @@
+// ******** MOBILE LAYOUTS ********
+
+// ********* 375px LAYOUT *********
+
+// ************** APP **************
+.app {
+  background: $color-alabaster;
+  transition: background 0.3s;
+}
+
+// ************ HEADER ************
+.header {
+  background: $color-white;
+  box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.06);
+  padding: 3rem 1.6rem;
+  transition: background 0.3s;
+
+  &__title-switcher {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    color: $color-cinder;
+    font-size: $responsive-14px-24px;
+    font-weight: $fw-extra-bold;
+    line-height: 2rem;
+    transition: color 0.3s;
+  }
+}
+
+// ******** THEME-SWITCHER ********
+.theme-switcher {
+  &__button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+  }
+
+  &__icon {
+    display: block;
+    width: $responsive-16px-20px;
+    height: $responsive-16px-20px;
+  }
+
+  &__label {
+    color: $color-cinder;
+    font-size: $responsive-12px-16px;
+    font-weight: $fw-semi-bold;
+    transition: color 0.3s;
+  }
+}
+
+// ********* SEARCH-FILTER *********
+.search-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 100%;
+
+  &-countries {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.2rem;
+    padding: 2.4rem 1.6rem 6.5rem;
+  }
+}
+
+// ************ SEARCH ************
+.search {
+  border-radius: 0.5rem;
+  background: $color-white;
+  box-shadow: $box-shadow-5-percent;
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+  padding: 1.6rem 3.2rem;
+  transition: background 0.3s;
+  max-width: 48rem;
+
+  &__icon {
+    display: block;
+    width: $responsive-16px-18px;
+    height: $responsive-16px-18px;
+
+    &-path {
+      fill: $color-nobel;
+      transition: fill 0.3s;
+    }
+  }
+
+  &__input {
+    border: none;
+    width: 100%;
+    background: $color-white;
+    transition: background 0.3s;
+    color: $color-cinder;
+    font-family: $font-nunito-sans;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    caret-color: $color-cinder;
+
+    &.dark-slate-grey-bg {
+      color: $color-white;
+      caret-color: $color-white;
+    }
+
+    &::placeholder {
+      color: $color-cloud;
+      font-size: $responsive-12px-14px;
+      line-height: 2rem;
+    }
+
+    &.dark-slate-grey-bg::placeholder {
+      color: $color-white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// ************ FILTER ************
+.filter {
+  width: 20rem;
+  position: relative;
+
+  &__header {
+    border-radius: 0.5rem;
+    background: $color-white;
+    box-shadow: $box-shadow-5-percent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 1.9rem 1.4rem 2.4rem;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  &__label {
+    color: $color-cinder;
+    font-size: $responsive-12px-14px;
+    line-height: 2rem;
+    transition: color 0.3s;
+  }
+
+  &__arrow-icon {
+    display: block;
+    transition: transform 0.3s;
+    width: $responsive-10px-12px;
+    height: $responsive-10px-12px;
+
+    &-path {
+      fill: $color-black;
+      transition: fill 0.3s;
+    }
+  }
+
+  &__options {
+    border-radius: 0.5rem;
+    background: $color-white;
+    box-shadow: $box-shadow-5-percent;
+    list-style: none;
+    padding: 1.6rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.8rem;
+    width: 100%;
+    position: absolute;
+    top: 5.2rem;
+    transition: background 0.3s;
+  }
+
+  &__option {
+    @include filter-text-styles;
+    cursor: pointer;
+  }
+
+  &__clear-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-weight: $fw-extra-bold;
+    @include filter-text-styles;
+    cursor: pointer;
+  }
+}
+
+// *********** COUNTRIES ***********
+.countries {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+// ************ COUNTRY ************
+.country {
+  width: 26.4rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &__flag {
+    width: 100%;
+    height: 16rem;
+    display: block;
+  }
+
+  &__description {
+    background: $color-white;
+    color: $color-cinder;
+    padding: 2.4rem 2.4rem 4.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  &__name {
+    font-size: 1.8rem;
+    font-weight: $fw-extra-bold;
+    line-height: 2.6rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__info {
+    font-size: 1.4rem;
+    font-weight: $fw-light;
+    line-height: 1.6rem;
+    display: flex;
+
+    & .bold {
+      font-weight: $fw-semi-bold;
+    }
+  }
+}
+
+// ************ SPINNER ************
+.spinner {
+  width: $responsive-40px-60px;
+  height: $responsive-40px-60px;
+  border: 0.5rem solid $color-cinder;
+  border-top: 0.5rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// ********* ERROR-MESSAGE *********
+.error-message {
+  font-size: $responsive-14px-24px;
+  color: $color-cinder;
+  font-weight: $fw-extra-bold;
+}
+
+// ************* DETAILS *************
+.details {
+  padding: 4rem 2.8rem 6.5rem;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 6.4rem;
+  }
+
+  &__back-btn {
+    width: 10.4rem;
+    height: 3.2rem;
+    border-radius: 0.2rem;
+    background: $color-white;
+    box-shadow: 0 0 0.7rem 0 rgba(0, 0, 0, 0.29);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  &__back-arrow-icon {
+    display: block;
+    width: $responsive-18px-20px;
+    height: $responsive-18px-20px;
+
+    &-path {
+      fill: $color-cinder;
+      transition: fill 0.3s;
+    }
+  }
+
+  &__back-btn-label {
+    color: $color-cinder;
+    font-family: $font-nunito-sans;
+    font-size: $responsive-14px-16px;
+    font-weight: $fw-light;
+    line-height: 2rem;
+    transition: color 0.3;
+  }
+
+  &__flag-overview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  &__flag {
+    display: block;
+    max-width: $responsive-320px-560px;
+    width: 100%;
+    height: $responsive-250px-401px;
+    border-radius: 0.5rem;
+  }
+
+  &__overview-border {
+    display: flex;
+    flex-direction: column;
+    gap: 3.4rem;
+  }
+
+  &__overview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+
+  &__name-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__name {
+    color: $color-cinder;
+    font-size: 2.2rem;
+    font-weight: $fw-extra-bold;
+    transition: color 0.3s;
+  }
+
+  &__label-value {
+    display: flex;
+    color: $color-cinder;
+    font-size: $responsive-14px-16px;
+    font-weight: $fw-semi-bold;
+    line-height: 3.2rem;
+    transition: color 0.3s;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  &__value {
+    font-weight: $fw-light;
+    white-space: nowrap;
+  }
+}
+
+// ********* BORDER-COUNTRIES *********
+.border-countries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  &__label {
+    color: $color-cinder;
+    font-size: 1.6rem;
+    font-weight: $fw-semi-bold;
+    line-height: 2.4rem;
+    transition: color 0.3s;
+  }
+
+  &__container {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__country {
+    width: 9.6rem;
+    height: 2.8rem;
+    border-radius: 0.2rem;
+    background: $color-white;
+    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-cinder;
+    font-size: $responsive-12px-14px;
+    font-weight: $fw-light;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+}
+
+// ******** 320px - 374px LAYOUT ********
+@media only screen and (max-width: 23.4375em) {
+  // ********* ERROR-MESSAGE *********
+  .error-message {
+    font-size: 1.29rem;
+  }
+}
+
+// ************ 600px LAYOUT ************
+@media only screen and (min-width: 37.5em) {
+  // ************* DETAILS *************
+  .details {
+    &__overview-container {
+      flex-direction: row;
+      gap: 4rem;
+
+      & > .details__overview:nth-child(2) {
+        margin-top: 4.6rem;
+      }
+    }
+  }
+}
+
+// ************ 675px LAYOUT ************
+@media only screen and (min-width: 42.1875em) {
+  // ************* COUNTRIES *************
+  .countries {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

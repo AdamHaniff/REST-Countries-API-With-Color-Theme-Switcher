@@ -1,0 +1,29 @@
+// ******** DYNAMIC STYLES ********
+.dark-slate-grey-bg {
+  background: $color-dark-slate-grey;
+}
+
+.white-color {
+  color: $color-white;
+}
+
+.ebony-clay-bg {
+  background: $color-ebony-clay;
+}
+
+.white-fill {
+  fill: $color-white;
+}
+
+.rotate {
+  transform: rotate(-180deg);
+}
+
+.border-dark {
+  border: 0.5rem solid $color-white;
+  border-top: 0.5rem solid $color-dark-slate-grey;
+}
+
+.box-shadow-dark {
+  box-shadow: 0 0 0.4rem 0.1rem rgba(17, 21, 23, 0.25);
+}

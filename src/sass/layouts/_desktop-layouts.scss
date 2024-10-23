@@ -1,0 +1,82 @@
+// *********** DESKTOP LAYOUTS ***********
+
+// ************ 1050px LAYOUT ************
+@media only screen and (min-width: 65.625em) {
+  // ************* COUNTRIES *************
+  .countries {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// ************ 1440px LAYOUT ************
+@media only screen and (min-width: 90em) {
+  // *************** HEADER ***************
+  .header {
+    display: flex;
+    justify-content: center;
+    padding: 2.4rem 7rem;
+
+    &__title-switcher {
+      max-width: 128.364rem;
+      width: 100%;
+    }
+  }
+
+  // ************ SEARCH-FILTER ************
+  .search-filter {
+    &-countries {
+      padding: 4.8rem 7rem 4.5rem;
+      max-width: 142.364rem;
+      margin: 0 auto;
+    }
+  }
+
+  // ************* COUNTRIES *************
+  .countries {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7.5rem;
+  }
+
+  // ************** DETAILS **************
+  .details {
+    padding: 8rem 7rem;
+    max-width: 142.364rem;
+    margin: 0 auto;
+    justify-content: initial;
+
+    &__flag-overview {
+      flex-direction: row;
+      align-items: center;
+      gap: 12.029rem;
+    }
+
+    &__flag {
+      width: 56rem;
+    }
+
+    &__overview-border {
+      gap: 6.8rem;
+    }
+
+    &__overview-container {
+      gap: 14.1rem;
+
+      & > .details__overview:nth-child(2) {
+        margin-top: 6.7rem;
+      }
+    }
+
+    &__name-overview {
+      gap: 2.3rem;
+    }
+
+    &__name {
+      font-size: 3.2rem;
+    }
+  }
+
+  // ********** BORDER-COUNTRIES **********
+  .border-countries {
+    flex-direction: row;
+  }
+}

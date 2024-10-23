@@ -1,0 +1,106 @@
+// ********* DESIGN SYSTEM *********
+
+// ************ COLORS ************
+$color-white: #fff;
+$color-alabaster: #fafafa;
+$color-cinder: #111517;
+$color-cloud: #c4c4c4;
+$color-dark-slate-grey: #2b3844;
+$color-ebony-clay: #202c36;
+$color-mountain-mist: #979797;
+$color-nobel: #b2b2b2;
+$color-black: #000;
+$color-davy-grey: #4c5358;
+$color-rock-blue: #9bb3c5;
+$color-lavender-pinocchio: #e0e0e0;
+$color-limed-spruce: #3c4a54;
+
+// ********** BOX-SHADOWS **********
+$box-shadow-5-percent: 0 0.2rem 0.9rem 0 rgba(0, 0, 0, 0.05);
+
+// ********** FONT-FAMILY **********
+$font-nunito-sans: "Nunito Sans", sans-serif;
+
+// ********* FONT-WEIGHTS *********
+$fw-light: 300;
+$fw-semi-bold: 600;
+$fw-extra-bold: 800;
+
+// ************** VARIABLES **************
+$responsive-10px-12px: clamp(
+  1rem,
+  calc(1rem + (12 - 10) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.2rem
+);
+
+$responsive-12px-14px: clamp(
+  1.2rem,
+  calc(1.2rem + (14 - 12) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.4rem
+);
+
+$responsive-12px-16px: clamp(
+  1.2rem,
+  calc(1.2rem + (16 - 12) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.6rem
+);
+
+$responsive-14px-16px: clamp(
+  1.4rem,
+  calc(1.4rem + (16 - 14) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.6rem
+);
+
+$responsive-14px-24px: clamp(
+  1.4rem,
+  calc(1.4rem + (24 - 14) * ((100vw - 37.5rem) / (1440 - 375))),
+  2.4rem
+);
+
+$responsive-16px-18px: clamp(
+  1.6rem,
+  calc(1.6rem + (18 - 16) * ((100vw - 37.5rem) / (1440 - 375))),
+  1.8rem
+);
+
+$responsive-16px-20px: clamp(
+  1.6rem,
+  calc(1.6rem + (20 - 16) * ((100vw - 37.5rem) / (1440 - 375))),
+  2rem
+);
+
+$responsive-18px-20px: clamp(
+  1.8rem,
+  calc(1.8rem + (20 - 18) * ((100vw - 37.5rem) / (1440 - 375))),
+  2rem
+);
+
+$responsive-22px-32px: clamp(
+  2.2rem,
+  calc(2.2rem + (32 - 22) * ((100vw - 37.5rem) / (1440 - 375))),
+  3.2rem
+);
+
+$responsive-40px-60px: clamp(
+  4rem,
+  calc(4rem + (60 - 40) * ((100vw - 37.5rem) / (1440 - 375))),
+  6rem
+);
+
+$responsive-250px-401px: clamp(
+  25rem,
+  calc(25rem + (401 - 250) * ((100vw - 37.5rem) / (1440 - 375))),
+  40.1rem
+);
+
+$responsive-320px-560px: clamp(
+  32rem,
+  calc(32rem + (560 - 320) * ((100vw - 37.5rem) / (1440 - 375))),
+  56rem
+);
+
+$responsive-450px-495px: clamp(
+  45rem,
+  calc(45rem + (495 - 450) * ((100vw - 60rem) / (1439 - 600))),
+  49.5rem
+);

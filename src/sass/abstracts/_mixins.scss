@@ -1,0 +1,7 @@
+// *************** MIXINS ***************
+@mixin filter-text-styles {
+  color: $color-cinder;
+  font-size: $responsive-12px-14px;
+  line-height: $responsive-16px-20px;
+  transition: color 0.3s;
+}
