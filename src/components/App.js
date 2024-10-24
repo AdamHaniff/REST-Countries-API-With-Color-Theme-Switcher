@@ -1,8 +1,14 @@
 import { useState, useEffect, useRef, createContext, useCallback } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import Header from "./Header";
+import SearchFilter from "./SearchFilter";
+import Spinner from "./Spinner";
+import ErrorMessage from "./ErrorMessage";
+import Countries from "./Countries";
+import CountryDetails from "./CountryDetails";
 
 // CONTEXTS
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
 export default function App() {
   // STATE

@@ -1,3 +1,9 @@
+import { useState, useContext, useRef, useEffect } from "react";
+import { ThemeContext } from "./App";
+
+// VARIABLES
+const filteredRegions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+
 export default function Filter({
   filteredRegion,
   onRegionClick,

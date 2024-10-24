@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ThemeContext } from "./App";
+
 export default function Search({ countryName, setCountryName }) {
   // VARIABLES
   const isLightTheme = useContext(ThemeContext);

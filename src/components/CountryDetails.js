@@ -1,3 +1,8 @@
+import countryCodes from "../data.js/countryCodes";
+import { useContext } from "react";
+import { ThemeContext } from "./App";
+import LabelValue from "./LabelValue";
+
 export default function CountryDetails({
   selectedCountry,
   onBackBtnClick,

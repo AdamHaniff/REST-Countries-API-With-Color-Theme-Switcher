@@ -1,3 +1,5 @@
+import Country from "./Country";
+
 export default function Countries({ countries, onCountryClick }) {
   return (
     <div className="countries">

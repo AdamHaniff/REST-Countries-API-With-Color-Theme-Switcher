@@ -1,3 +1,6 @@
+import Search from "./Search";
+import Filter from "./Filter";
+
 export default function SearchFilter({
   filteredRegion,
   onRegionClick,
